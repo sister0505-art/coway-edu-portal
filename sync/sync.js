@@ -165,11 +165,14 @@ function generateCoursesBlock(rows) {
       // 교육 진행 상태
       const status = (past || budgetRaw.includes('완료')) ? 'complete' : 'progress';
 
+      // 신청 URL (CSV 컬럼, 없으면 기본 주소)
+      const applyUrl = (row['지금 바로 신청하기 (사이트 주소)'] || '').trim() || 'https://edu.coway.com/emp';
+
       return `      { id:${id++}, cat:'${esc(cat)}', catClass:'${getCatClass(cat)}', ` +
         `name:'${esc(row['교육명'])}', pre:${preCount}, done:${doneCount}, ` +
         `date:'${esc(dateStr.trim())}', location:'${esc(row['장소'])}', ` +
         `instructor:'${esc(row['강사'])}', target:'전체', status:'${status}', budget:'${budget}', ` +
-        `attendees:${attendeesArr}, preAttendees:${preArr} }`;
+        `applyUrl:'${esc(applyUrl)}', attendees:${attendeesArr}, preAttendees:${preArr} }`;
     });
 
   return '    // §COURSES_START§\n    const courses = [\n' +
@@ -530,6 +533,7 @@ function generateMonthlyBlock(rows) {
       date: (time ? `${dateStr} ${time}` : dateStr).trim(),
       location: row['장소'] || '',
       seats: parseInt(row['사전 신청자 (명)'] || row['정원']) || null,
+      applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim() || 'https://edu.coway.com/emp',
     };
 
     // '상시' 포함 일시 → 12월까지 매월 반복
@@ -564,7 +568,7 @@ function generateMonthlyBlock(rows) {
     const courseItems = list.map(c =>
       `        { cat:'${esc(c.cat)}', catClass:'${getCatClass(c.cat)}', name:'${esc(c.name)}', ` +
       `desc:'${esc(c.desc)}', instructor:'${esc(c.instructor)}', date:'${esc(c.date)}', ` +
-      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, target:'전체', applyType:'open' }`
+      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, target:'전체', applyType:'open', applyUrl:'${esc(c.applyUrl)}' }`
     ).join(',\n');
     monthEntries.push(
       `      ${m}: {\n        title:'${m}월 수강 신청 과정', total:${list.length},\n` +
