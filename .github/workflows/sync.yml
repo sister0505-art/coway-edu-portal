@@ -1,0 +1,33 @@
+name: 교육포털 데이터 동기화
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 매일 12:00 KST (= UTC 03:00)
+    - cron: '0 9 * * *'   # 매일 18:00 KST (= UTC 09:00)
+  workflow_dispatch:       # GitHub에서 수동 실행 가능
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 20 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 동기화 실행
+        run: node sync/sync.js
+
+      - name: 변경사항 커밋 및 푸시
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add coway_edu_portal.html
+          git diff --staged --quiet || git commit -m "🔄 자동 동기화 $(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M KST')"
+          git push

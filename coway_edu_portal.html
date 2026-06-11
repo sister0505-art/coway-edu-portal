@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COWAY R&D CENTER — Tech Talent 교육 운영 포털</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --brand-deep: #0B2545;
+      --brand-blue: #1565C0;
+      --brand-mid: #1976D2;
+      --brand-light: #E3F0FF;
+      --brand-accent: #00B4D8;
+      --brand-teal: #0097A7;
+      --admin-color: #1565C0;
+      --researcher-color: #00796B;
+      --text-primary: #1A1A2E;
+      --text-secondary: #5A6A85;
+      --text-muted: #94A3B8;
+      --bg-base: #F0F4FA;
+      --bg-card: #FFFFFF;
+      --border: #DDE5F0;
+      --success: #43A047;
+      --warning: #F57C00;
+      --danger: #E53935;
+      --purple: #7B1FA2;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(11, 37, 69, 0.08);
+      --shadow-lg: 0 8px 32px rgba(11, 37, 69, 0.13);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: var(--brand-deep);
+      color: white;
+      padding: 0 28px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--brand-accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--brand-deep);
+    }
+
+    .header-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-subtitle {
+      font-size: 10px;
+      opacity: 0.6;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sync-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      background: #4CAF50;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    /* ─── MODE SWITCHER ─── */
+    /* ── 모드 선택 화면 ── */
+    #modeSelectScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0D1B2A 0%, #1565C0 50%, #00796B 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      gap: 40px;
+    }
+    .mode-select-logo {
+      text-align: center;
+      color: white;
+    }
+    .mode-select-logo .logo-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .mode-select-logo h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin: 0 0 6px;
+    }
+    .mode-select-logo p {
+      font-size: 14px;
+      opacity: 0.7;
+      margin: 0;
+    }
+    .mode-select-cards {
+      display: flex;
+      gap: 24px;
+    }
+    .mode-select-card {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 36px 40px;
+      width: 220px;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(10px);
+    }
+    .mode-select-card:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .mode-select-card .card-icon { font-size: 40px; margin-bottom: 14px; }
+    .mode-select-card .card-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .mode-select-card .card-desc  { font-size: 12px; opacity: 0.7; line-height: 1.5; }
+    .mode-select-card .card-badge {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .card-badge-admin    { background: #E53935; }
+    .card-badge-research { background: #00897B; }
+
+    .mode-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .mode-btn {
+      padding: 14px 24px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .mode-btn.active-admin {
+      color: var(--admin-color);
+      border-bottom-color: var(--admin-color);
+    }
+
+    .mode-btn.active-researcher {
+      color: var(--researcher-color);
+      border-bottom-color: var(--researcher-color);
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-base);
+    }
+
+    .mode-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+      margin: 0 8px;
+    }
+
+    .mode-badge {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-admin {
+      background: #E8EEF9;
+      color: var(--admin-color);
+    }
+
+    .badge-researcher {
+      background: #E0F2F1;
+      color: var(--researcher-color);
+    }
+
+    /* ─── TABS (secondary) ─── */
+    .tab-bar {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      border-bottom: 2px solid transparent;
+      transition: all 0.18s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      color: var(--brand-blue);
+      border-bottom-color: var(--brand-blue);
+      background: var(--brand-light);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tab-btn:hover:not(.active) {
+      color: var(--text-primary);
+      background: var(--bg-base);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tab-btn.month-tab.active {
+      color: var(--researcher-color);
+      border-bottom-color: var(--researcher-color);
+      background: #E0F2F1;
+    }
+
+    /* ─── CONTENT ─── */
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .content {
+      padding: 24px 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ─── STAT CARDS ─── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.blue {
+      background: var(--brand-light);
+    }
+
+    .stat-icon.red {
+      background: #FFEBEE;
+    }
+
+    .stat-icon.green {
+      background: #E8F5E9;
+    }
+
+    .stat-icon.orange {
+      background: #FFF3E0;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ─── TWO COLUMN ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .card-title-icon {
+      font-size: 16px;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      padding: 16px 20px;
+    }
+
+    /* ─── DONUT ─── */
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .donut-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
+    .donut-container svg {
+      transform: rotate(-90deg);
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .donut-total {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .donut-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ─── TOP5 BARS ─── */
+    .bar-item {
+      margin-bottom: 12px;
+    }
+
+    .bar-label {
+      font-size: 12px;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bar-label span {
+      font-weight: 600;
+      color: var(--brand-blue);
+    }
+
+    .bar-track {
+      background: var(--bg-base);
+      border-radius: 4px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
+      transition: width 0.8s ease;
+    }
+
+    /* ─── RANK LIST ─── */
+    .rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-base);
+      border-radius: 8px;
+    }
+
+    .rank-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .rank-1 {
+      background: #FFF8E1;
+      color: #F57F17;
+    }
+
+    .rank-2 {
+      background: #F5F5F5;
+      color: #616161;
+    }
+
+    .rank-3 {
+      background: #FBE9E7;
+      color: #BF360C;
+    }
+
+    .rank-other {
+      background: #E8EEF9;
+      color: var(--brand-blue);
+    }
+
+    .rank-name {
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .rank-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── OPINION CARD ─── */
+    .opinion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .opinion-item {
+      display: flex;
+      gap: 10px;
+    }
+
+    .opinion-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .opinion-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .opinion-text strong {
+      color: var(--text-primary);
+    }
+
+    .opinion-text .highlight {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    /* ─── MATRIX TABLE ─── */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tag {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .filter-tag.active {
+      background: var(--brand-blue);
+      color: white;
+      border-color: var(--brand-blue);
+    }
+
+    .matrix-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 16px;
+    }
+
+    .course-list-wrap {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .course-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .course-table th {
+      background: var(--bg-base);
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .course-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .course-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .course-table tr {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .course-table tr:hover td {
+      background: var(--brand-light);
+    }
+
+    .course-table tr.selected td {
+      background: var(--brand-light);
+      border-left: 3px solid var(--brand-blue);
+    }
+
+    .cat-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .cat-onboarding {
+      background: #E8F4FD;
+      color: #1565C0;
+    }
+
+    .cat-knowledge {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .cat-ip {
+      background: #F3E5F5;
+      color: #6A1B9A;
+    }
+
+    .cat-pm {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    .cat-failure {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .course-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .course-status {
+      font-size: 11px;
+      margin-top: 3px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .status-complete {
+      background: var(--success);
+    }
+
+    .status-progress {
+      background: var(--warning);
+    }
+
+    .course-nums {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-blue);
+      white-space: nowrap;
+    }
+
+    .course-date {
+      font-size: 11px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .detail-panel {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 20px;
+      position: sticky;
+      top: 130px;
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
+    }
+
+    .detail-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .detail-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .detail-field {}
+
+    .detail-field-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .detail-field-value {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .detail-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      padding: 10px 0 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric-box {
+      background: var(--bg-base);
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand-blue);
+    }
+
+    .metric-lbl {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .attendee-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .attendee-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      background: var(--bg-base);
+      border-radius: 7px;
+    }
+
+    .attendee-name {
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .attendee-dept {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .check-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: #E8F5E9;
+      color: var(--success);
+    }
+
+    .pending-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: #FFF8E1;
+      color: var(--warning);
+    }
+
+    .miss-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: #FFEBEE;
+      color: var(--danger);
+    }
+
+    /* ─── RESEARCHER VIEW ─── */
+    .month-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 12px 28px 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .month-tab-btn {
+      padding: 9px 18px;
+      border-radius: 6px 6px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: none;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .month-tab-btn.active {
+      background: var(--bg-base);
+      border-color: var(--border);
+      color: var(--researcher-color);
+      position: relative;
+      bottom: -1px;
+      background: white;
+      border-bottom-color: white;
+    }
+
+    .month-tab-btn:hover:not(.active) {
+      background: var(--bg-base);
+      color: var(--text-primary);
+    }
+
+    .month-tag {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: #E0F2F1;
+      color: var(--researcher-color);
+      margin-left: 4px;
+    }
+
+    .month-tag.past-tag {
+      background: #ECEFF1;
+      color: #78909C;
+    }
+
+    .edu-hero {
+      background: linear-gradient(135deg, var(--brand-deep) 0%, #1565C0 60%, var(--brand-teal) 100%);
+      color: white;
+      padding: 32px 28px;
+      margin-bottom: 0;
+    }
+
+    .edu-hero-eyebrow {
+      font-size: 11px;
+      opacity: 0.7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .edu-hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .edu-hero-sub {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .edu-hero-chips {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    .hero-chip-icon {
+      font-size: 16px;
+    }
+
+    .hero-chip-label {
+      opacity: 0.8;
+      font-size: 10px;
+    }
+
+    .hero-chip-value {
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .category-filter {
+      background: white;
+      padding: 14px 28px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .cat-filter-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .cat-filter-btn.active-all {
+      background: var(--brand-deep);
+      color: white;
+      border-color: var(--brand-deep);
+    }
+
+    .cat-filter-btn:hover:not(.active-all) {
+      background: var(--bg-base);
+    }
+
+    .courses-grid {
+      padding: 20px 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .course-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .course-card-top {
+      padding: 16px 18px 12px;
+    }
+
+    .course-card-cat {
+      margin-bottom: 8px;
+    }
+
+    .course-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .course-card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .course-card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .meta-icon {
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .course-card-footer {
+      padding: 12px 18px;
+      background: var(--bg-base);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .apply-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: none;
+      background: var(--researcher-color);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: -0.2px;
+    }
+
+    .apply-btn:hover {
+      background: #00695C;
+    }
+
+    .apply-btn.target-only {
+      background: var(--brand-blue);
+    }
+
+    .apply-btn.target-only:hover {
+      background: #0D47A1;
+    }
+
+    .apply-btn.completed-btn {
+      background: #ECEFF1;
+      color: #90A4AE;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .seat-info {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .seat-info strong {
+      color: var(--researcher-color);
+      font-weight: 700;
+    }
+
+    /* ─── RESEARCHER CARDS ─── */
+    .researchers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .researcher-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .researcher-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .researcher-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .researcher-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .researcher-dept {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .researcher-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .researcher-courses {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rc-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 0 6px;
+      margin-top: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 6px;
+    }
+    .rc-section-title.done  { color: #1565C0; }
+    .rc-section-title.pre   { color: #43A047; }
+    .rc-section-empty { font-size: 11px; color: var(--text-muted); padding: 4px 0 2px; }
+
+    .rc-item {
+      background: var(--bg-base);
+      border-radius: 7px;
+      padding: 8px 11px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .rc-item-badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-top: 1px;
+    }
+    .rc-item-badge.done { background: #E3F0FF; color: #1565C0; }
+    .rc-item-badge.pre  { background: #E8F5E9; color: #2E7D32; }
+
+    .rc-name {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 3px;
+    }
+
+    .rc-meta {
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--success);
+      font-weight: 600;
+      background: #E8F5E9;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .search-input-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-input-wrap input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      width: 100%;
+      background: transparent;
+      font-family: inherit;
+      color: var(--text-primary);
+    }
+
+    .search-input-wrap input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* ─── NOTICE / MODAL ─── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--brand-deep);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .loading-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      animation: loadbar 1.2s ease forwards;
+    }
+
+    @keyframes loadbar {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    /* ─── UTIL ─── */
+    .text-sm {
+      font-size: 12px;
+    }
+
+    .text-muted {
+      color: var(--text-secondary);
+    }
+
+    .fw-600 {
+      font-weight: 600;
+    }
+
+    .mt-4 {
+      margin-top: 4px;
+    }
+
+    .full-card {
+      grid-column: 1 / -1;
+    }
+
+    /* ─── PASSWORD MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(11, 37, 69, 0.55);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(11, 37, 69, 0.22);
+      width: 360px;
+      padding: 36px 32px;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.25s;
+      position: relative;
+    }
+
+    .modal-overlay.show .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-lock-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--brand-light);
+      color: var(--brand-blue);
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .modal-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .modal-sub {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .modal-input-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 12px 44px 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      letter-spacing: 3px;
+      transition: border-color 0.2s;
+      background: var(--bg-base);
+    }
+
+    .modal-input:focus {
+      border-color: var(--brand-blue);
+      background: white;
+    }
+
+    .modal-input.error {
+      border-color: var(--danger);
+      animation: shake 0.35s;
+    }
+
+    .modal-eye {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--text-muted);
+      user-select: none;
+      transition: color 0.15s;
+    }
+
+    .modal-eye:hover {
+      color: var(--brand-blue);
+    }
+
+    .modal-error {
+      font-size: 12px;
+      color: var(--danger);
+      margin-bottom: 14px;
+      display: none;
+      text-align: center;
+    }
+
+    .modal-error.show {
+      display: block;
+    }
+
+    .modal-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--brand-blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: -0.2px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .modal-submit:hover {
+      background: #0D47A1;
+    }
+
+    .modal-submit:active {
+      transform: scale(0.98);
+    }
+
+    .modal-cancel {
+      width: 100%;
+      padding: 10px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-family: inherit;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+
+    .modal-cancel:hover {
+      background: var(--bg-base);
+      color: var(--text-secondary);
+    }
+
+    .modal-close-x {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+
+    .modal-close-x:hover {
+      color: var(--text-primary);
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      20% {
+        transform: translateX(-6px)
+      }
+
+      40% {
+        transform: translateX(6px)
+      }
+
+      60% {
+        transform: translateX(-4px)
+      }
+
+      80% {
+        transform: translateX(4px)
+      }
+    }
+
+    /* Lock indicator on admin button when logged out */
+    .mode-lock-hint {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .matrix-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .researchers-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .researchers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content {
+        padding: 16px;
+      }
+    }
+
+    /* ─── SYNC ERROR BANNER & GUIDE MODAL ─── */
+    .sync-error-banner {
+      background: #FFF3E0;
+      border-bottom: 1px solid #FFE0B2;
+      color: #E65100;
+      padding: 10px 28px;
+      font-size: 13px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      animation: fadeInDown 0.3s ease;
+    }
+    .sync-error-banner a {
+      color: #1565C0;
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .sync-error-banner a:hover {
+      color: #0D47A1;
+    }
+    
+    .guide-modal-box {
+      width: 480px;
+      max-width: 90%;
+    }
+    .guide-step {
+      background: var(--bg-base);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .guide-step strong {
+      color: var(--brand-blue);
+    }
+    
+    @keyframes fadeInDown {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loading-bar" id="loadingBar"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-logo">R&D</div>
+      <div class="header-title-group">
+        <span class="header-subtitle">COWAY R&D CENTER</span>
+        <span class="header-title">Tech Talent 교육 운영 포털</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="sync-badge">
+        <div class="sync-dot"></div>
+        <span>인사 시스템 수료 연동 완료</span>
+      </div>
+      <span style="cursor:pointer;font-size:18px;opacity:0.7" title="새로고침" onclick="window.location.reload()">↻</span>
+    </div>
+  </header>
+
+  <!-- MODE SELECT SCREEN -->
+  <div id="modeSelectScreen">
+    <div class="mode-select-logo">
+      <div class="logo-badge">COWAY R&amp;D CENTER</div>
+      <h1>Tech Talent 교육 운영 포털</h1>
+      <p>접속할 모드를 선택해 주세요</p>
+    </div>
+    <div class="mode-select-cards">
+      <div class="mode-select-card" onclick="enterAdminMode()">
+        <div class="card-icon">📊</div>
+        <div class="card-title">관리자 모드</div>
+        <div class="card-desc">교육과정 매트릭스 관리<br>대시보드 및 통계 분석</div>
+        <div class="card-badge card-badge-admin">ADMIN</div>
+      </div>
+      <div class="mode-select-card" onclick="enterResearcherMode()">
+        <div class="card-icon">🔬</div>
+        <div class="card-title">연구원 모드</div>
+        <div class="card-desc">월별 교육과정 조회<br>수강 신청 및 일정 확인</div>
+        <div class="card-badge card-badge-research">RESEARCHER</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNC ERROR BANNER -->
+  <div class="sync-error-banner" id="syncErrorBanner">
+    <span>⚠️ <strong>실시간 구글 시트 동기화 실패</strong>: 시트가 비공개 상태이거나 '웹에 게시' 설정이 누락되어 오프라인 기본 데이터로 표시됩니다.</span>
+    <a onclick="showSyncGuide()">조치 방법 확인 ↗</a>
+  </div>
+
+  <!-- MODE SWITCHER -->
+  <div class="mode-bar">
+    <button class="mode-btn active-admin" onclick="requestAdminAccess()" id="modeAdminBtn">
+      📊 관리자 모드
+      <span class="mode-lock-hint" id="adminLockHint">🔒</span>
+      <span class="mode-badge badge-admin">ADMIN</span>
+    </button>
+    <div class="mode-divider"></div>
+    <button class="mode-btn active-researcher" onclick="switchMode('researcher', this)" id="modeResearcherBtn">
+      🔬 연구원 모드
+      <span class="mode-badge badge-researcher">RESEARCHER</span>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     ADMIN MODE
+═══════════════════════════════════════════ -->
+  <div id="adminMode" style="display:none">
+    <!-- Admin Tabs -->
+    <div class="tab-bar" id="adminTabBar">
+      <button class="tab-btn active" onclick="switchAdminTab('dashboard', this)">📈 종합 대시보드</button>
+      <button class="tab-btn" onclick="switchAdminTab('matrix', this)">🎓 교육과정 매트릭스</button>
+      <button class="tab-btn" onclick="switchAdminTab('researchers', this)">👥 연구원/소속팀 분석</button>
+    </div>
+
+    <!-- ── DASHBOARD ── -->
+    <div id="tab-dashboard" class="view active">
+      <div class="content">
+                                                                                                                                <!-- §DASHBOARD_START§ -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">📚</div>
+            <div>
+              <div class="stat-label">총 개설 과정</div>
+              <div class="stat-value">21<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span></div>
+              <div class="stat-sub">상/하반기 통합</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red">✅</div>
+            <div>
+              <div class="stat-label">진행완료 / 진행예정</div>
+              <div class="stat-value">6<span style="font-size:14px;color:var(--text-secondary)">/</span>15<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span></div>
+              <div class="stat-sub">일정 기준 자동 분류</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">🎓</div>
+            <div>
+              <div class="stat-label">실제 이수 완료 인원</div>
+              <div class="stat-value">74<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">명</span></div>
+              <div class="stat-sub">CSV 이수자 명단 기준</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange">%</div>
+            <div>
+              <div class="stat-label">평균 수료 이수율</div>
+              <div class="stat-value">100<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">%</span></div>
+              <div class="stat-sub">사전 신청 대비 이수율</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">🥧</span> 카테고리별 과정 분포</div>
+            </div>
+            <div class="card-body">
+              <div class="donut-wrap">
+                <div class="donut-container">
+                  <svg width="140" height="140" viewBox="0 0 140 140">
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#E3F0FF" stroke-width="22" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#1565C0" stroke-width="22" stroke-dasharray="74.8 314.16" stroke-dashoffset="0" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#E53935" stroke-width="22" stroke-dasharray="59.8 314.16" stroke-dashoffset="-74.8" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#7B1FA2" stroke-width="22" stroke-dasharray="44.9 314.16" stroke-dashoffset="-134.6" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#039BE5" stroke-width="22" stroke-dasharray="29.9 314.16" stroke-dashoffset="-179.5" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#F57C00" stroke-width="22" stroke-dasharray="29.9 314.16" stroke-dashoffset="-209.4" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#00ACC1" stroke-width="22" stroke-dasharray="29.9 314.16" stroke-dashoffset="-239.4" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#43A047" stroke-width="22" stroke-dasharray="15.0 314.16" stroke-dashoffset="-269.3" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#FF8F00" stroke-width="22" stroke-dasharray="15.0 314.16" stroke-dashoffset="-284.2" />
+                    <circle cx="70" cy="70" r="50" fill="none" stroke="#D84315" stroke-width="22" stroke-dasharray="15.0 314.16" stroke-dashoffset="-299.2" />
+                  </svg>
+                  <div class="donut-center">
+                    <div class="donut-total">21</div>
+                    <div class="donut-label">전체 과정</div>
+                  </div>
+                </div>
+                <div class="legend">
+                  <div class="legend-item"><div class="legend-dot" style="background:#1565C0"></div>지식공유회 (5개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#E53935"></div>특허 온라인 교육 (4개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#7B1FA2"></div>온보딩 (3개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#039BE5"></div>IP전략 (2개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#F57C00"></div>AI교육 (2개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#00ACC1"></div>지식공유 (2개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#43A047"></div>제품 실무 (1개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#FF8F00"></div>PM기본 (1개)</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#D84315"></div>PM실무 (1개)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">📊</span> 인기 교육 과정 Top 5</div>
+              <span class="card-sub"><span style="color:#1565C0">■</span> 이수자 &nbsp;<span style="color:#43A047">■</span> 사전신청자</span>
+            </div>
+            <div class="card-body">
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>설계품질 전문가 DA NotebookLM</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 24명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 0명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:100%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>R&amp;D Tech 공채 1기 대상 재품군 설치 교육</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 19명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 19명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:79%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:79%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>기능성 밸브의 이해</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 16명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 0명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:67%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>커피정수기 이해 및 제품분해 실습</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 9명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 0명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:38%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>온보딩 2차 과정</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 5명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 0명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:21%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">🏆</span> 참여도 높은 소속팀 Top 5</div>
+              <span class="card-sub">전 과정 사전신청+수료 합산 순</span>
+            </div>
+            <div class="card-body">
+              <div class="rank-list">
+
+                <div class="rank-item">
+                  <div class="rank-num rank-1">1</div>
+                  <div class="rank-name">TechTalentTF</div>
+                  <div class="rank-count" style="font-size:11px">
+                    <span style="color:#43A047;font-weight:700">사전 신청 27명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#1565C0;font-weight:700">이수 29명</span>
+                  </div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-num rank-2">2</div>
+                  <div class="rank-name">Water인증팀</div>
+                  <div class="rank-count" style="font-size:11px">
+                    <span style="color:#43A047;font-weight:700">사전 신청 11명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#1565C0;font-weight:700">이수 5명</span>
+                  </div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-num rank-3">3</div>
+                  <div class="rank-name">Water개발2팀</div>
+                  <div class="rank-count" style="font-size:11px">
+                    <span style="color:#43A047;font-weight:700">사전 신청 10명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#1565C0;font-weight:700">이수 4명</span>
+                  </div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-num rank-other">4</div>
+                  <div class="rank-name">Air개발2팀</div>
+                  <div class="rank-count" style="font-size:11px">
+                    <span style="color:#43A047;font-weight:700">사전 신청 0명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#1565C0;font-weight:700">이수 4명</span>
+                  </div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-num rank-other">5</div>
+                  <div class="rank-name">Living개발1팀</div>
+                  <div class="rank-count" style="font-size:11px">
+                    <span style="color:#43A047;font-weight:700">사전 신청 9명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#1565C0;font-weight:700">이수 3명</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">💡</span> R&D 수료 및 분석 오피니언</div>
+              <span class="card-sub">2026년 6월 11일 기준</span>
+            </div>
+            <div class="card-body">
+              <div class="opinion-list">
+
+                <div class="opinion-item">
+                  <div class="opinion-icon">✅</div>
+                  <div class="opinion-text"><strong>수료 완료 과정:</strong> 현재까지 총 <strong>6개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>74명</strong>이 확정되었습니다.</div>
+                </div>
+                <div class="opinion-item">
+                  <div class="opinion-icon">✅</div>
+                  <div class="opinion-text"><strong>이수율 달성 현황:</strong> 수료 과정의 사전 신청자 대비 평균 이수율이 <strong>100%</strong>로 집계되었습니다.</div>
+                </div>
+                <div class="opinion-item">
+                  <div class="opinion-icon">✅</div>
+                  <div class="opinion-text"><strong>예산 집행 현황:</strong> 전체 21개 과정 중 집행 완료 <strong>6개</strong> — 완료 과정의 예산이 모두 집행되었습니다.</div>
+                </div>
+                <div class="opinion-item">
+                  <div class="opinion-icon">🚫</div>
+                  <div class="opinion-text"><strong>폐강 과정 (2건):</strong> 최소 신청인원(8명) 미달로 <strong>PM 기본(1일차)</strong>, <strong>PM 기본 + 실무 W/S (2일 과정)</strong> 과정이 폐강 처리되었습니다. 재개설 여부 검토가 필요합니다.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- §DASHBOARD_END§ -->
+      </div>
+    </div>
+
+    <!-- ── MATRIX ── -->
+    <div id="tab-matrix" class="view">
+      <div class="content">
+        <div
+          style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--text-secondary)">
+          🔍 <input
+            style="border:none;outline:none;font-size:13px;width:100%;font-family:inherit;background:transparent"
+            placeholder="교육과정명, 강사명으로 검색하세요..." oninput="filterCourses(this.value)">
+        </div>
+        <div class="filter-tags">
+          <button class="filter-tag active" onclick="filterByTag('전체',this)">전체</button>
+          <button class="filter-tag" onclick="filterByTag('지식공유',this)">지식공유</button>
+          <button class="filter-tag" onclick="filterByTag('실패사례',this)">실패사례</button>
+          <button class="filter-tag" onclick="filterByTag('IP전략',this)">IP전략</button>
+          <button class="filter-tag" onclick="filterByTag('PM기본',this)">PM기본</button>
+          <button class="filter-tag" onclick="filterByTag('PM실무',this)">PM실무</button>
+          <button class="filter-tag" onclick="filterByTag('온보딩',this)">온보딩</button>
+        </div>
+        <div class="matrix-layout">
+          <div class="course-list-wrap">
+            <table class="course-table" id="courseTable">
+              <thead>
+                <tr>
+                  <th>분류</th>
+                  <th>과정명</th>
+                  <th>사전/수료</th>
+                  <th>개설 일정</th>
+                </tr>
+              </thead>
+              <tbody id="courseTableBody">
+              </tbody>
+            </table>
+          </div>
+          <div class="detail-panel" id="detailPanel">
+            <div style="text-align:center;padding:40px 0;color:var(--text-muted)">
+              <div style="font-size:40px;margin-bottom:12px">📋</div>
+              <div style="font-size:14px;font-weight:600;">과정을 선택하면<br>상세 정보가 표시됩니다</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RESEARCHERS ── -->
+    <div id="tab-researchers" class="view">
+      <div class="content">
+        <div class="search-input-wrap">
+          👤 <input type="text" placeholder="연구원 이름(예: 고문석) 또는 소속 팀명 검색..." oninput="filterResearchers(this.value)">
+        </div>
+        <div class="researchers-grid" id="researchersGrid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     RESEARCHER MODE
+═══════════════════════════════════════════ -->
+  <div id="researcherMode" style="display:none">
+    <div class="month-tabs" id="monthTabBar">
+                                                                                                      <!-- §TABS_START§ -->
+      <button class="month-tab-btn" onclick="switchMonth(2, this)">2월 <span class="month-tag past-tag">완료</span></button>
+      <button class="month-tab-btn" onclick="switchMonth(3, this)">3월 <span class="month-tag past-tag">완료</span></button>
+      <button class="month-tab-btn" onclick="switchMonth(5, this)">5월 <span class="month-tag past-tag">완료</span></button>
+      <button class="month-tab-btn active" onclick="switchMonth(6, this)">6월 <span class="month-tag">운영중</span></button>
+      <button class="month-tab-btn" onclick="switchMonth(7, this)">7월</button>
+      <button class="month-tab-btn" onclick="switchMonth(8, this)">8월</button>
+      <button class="month-tab-btn" onclick="switchMonth(9, this)">9월</button>
+      <button class="month-tab-btn" onclick="switchMonth(10, this)">10월</button>
+      <button class="month-tab-btn" onclick="switchMonth(11, this)">11월</button>
+      <button class="month-tab-btn" onclick="switchMonth(12, this)">12월</button>
+      <!-- §TABS_END§ -->
+    </div>
+
+    <div id="monthContent">
+      <!-- Dynamically rendered -->
+    </div>
+  </div>
+
+  <!-- PASSWORD MODAL -->
+  <div class="modal-overlay" id="pwModal">
+    <div class="modal-box">
+      <span class="modal-close-x" onclick="closeModal()">✕</span>
+      <div class="modal-lock-icon">🔐</div>
+      <div class="modal-title">관리자 인증</div>
+      <div class="modal-sub">관리자 모드에 접근하려면<br>비밀번호를 입력하세요.</div>
+      <div class="modal-input-wrap">
+        <input class="modal-input" type="password" id="pwInput" placeholder="비밀번호 입력"
+          onkeydown="if(event.key==='Enter')submitPassword()" oninput="clearPwError()">
+        <span class="modal-eye" id="pwEye" onclick="togglePwVis()">👁</span>
+      </div>
+      <div class="modal-error" id="pwError">⚠️ 비밀번호가 올바르지 않습니다.</div>
+      <button class="modal-submit" onclick="submitPassword()">관리자 모드 접속</button>
+      <button class="modal-cancel" onclick="closeModal()">취소</button>
+    </div>
+  </div>
+
+  <!-- SYNC GUIDE MODAL -->
+  <div class="modal-overlay" id="syncGuideModal">
+    <div class="modal-box guide-modal-box">
+      <span class="modal-close-x" onclick="closeSyncGuide()">✕</span>
+      <div class="modal-lock-icon" style="background:#FFF3E0;color:#F57C00">⚙️</div>
+      <div class="modal-title">구글 시트 연동 조치 방법</div>
+      <div class="modal-sub" style="margin-bottom:16px">포털에 12개 교육과정이 정상적으로 나타나게 하려면 구글 스프레드시트에서 아래 설정을 완료해야 합니다.</div>
+      
+      <div class="guide-step">
+        <strong>방법 1. 웹에 게시 (가장 간단한 방법)</strong><br>
+        1. 연동 중인 구글 스프레드시트를 엽니다.<br>
+        2. 상단 메뉴에서 <code>파일 &gt; 공유 &gt; 웹에 게시</code>를 누릅니다.<br>
+        3. 탭 선택(예: <code>시트1</code>) 및 형식을 <code>웹페이지</code>로 지정 후 <strong>게시</strong>를 클릭합니다.
+      </div>
+      
+      <div class="guide-step" style="margin-top:12px">
+        <strong>방법 2. 링크 권한 전체 공개</strong><br>
+        1. 스프레드시트 우측 상단의 <strong>공유</strong> 버튼을 누릅니다.<br>
+        2. 일반 액세스를 <strong>링크가 있는 모든 사용자</strong>로 변경하고, 권한을 <strong>뷰어</strong>로 설정합니다.
+      </div>
+      
+      <button class="modal-submit" onclick="closeSyncGuide()" style="margin-top:20px;background:#F57C00">확인</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── DATA ──
+                                                                                                                            // §COURSES_START§
+    const courses = [
+      { id:1, cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', pre:19, done:19, date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', instructor:'박용걸, 박대희 님', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}], preAttendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}] },
+      { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:0, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
+      { id:3, cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', pre:13, done:0, date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정진규', dept:'전장개발실', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
+      { id:4, cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', pre:27, done:0, date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 이준석 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'김동규', dept:'Air시스템개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}] },
+      { id:5, cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', pre:25, done:0, date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 차용호 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'리빙개발2팀', status:'done'}, {name:'김재훈', dept:'임베디드시스템개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'유근상', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정안리', dept:'선행개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
+      { id:6, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', pre:15, done:0, date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}] },
+      { id:7, cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', pre:21, done:0, date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'오흥수', dept:'Watr개발4팀', status:'done'}, {name:'원량진', dept:'Sleep상품기획팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'임성혁', dept:'전장개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최범락', dept:'전장개발실', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'홍성권', dept:'Water개발2팀', status:'done'}] },
+      { id:8, cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', pre:0, done:0, date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:9, cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', pre:0, done:0, date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:10, cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', pre:0, done:0, date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:11, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:12, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:13, cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', pre:10, done:0, date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 홍현진 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}] },
+      { id:14, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', pre:14, done:0, date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'차재욱', dept:'BEREX전장개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}] },
+      { id:15, cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:16, cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', attendees:[], preAttendees:[] },
+      { id:17, cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 1차 귀임자 과정', pre:0, done:1, date:'2026.02.23(월) 10:00~11:30', location:'연구소 6층 대회의실', instructor:'사내강사', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'김철호', dept:'', status:'done'}], preAttendees:[] },
+      { id:18, cat:'온보딩', catClass:'cat-onboarding', name:'커피정수기 이해 및 제품분해 실습', pre:0, done:9, date:'2026.02.23(월) 13:00~15:00', location:'연구소 대강당', instructor:'주우진', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}, {name:'김규준', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'김철호', dept:'Water개발1팀', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'최인두', dept:'1연구소', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}], preAttendees:[] },
+      { id:19, cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 2차 과정', pre:0, done:5, date:'2026.03.25~26(수,목) 10:00~11:30', location:'연구소 6층 대회의실', instructor:'사내강사', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'김영민', dept:'RELAX상품기획팀', status:'done'}, {name:'송청호', dept:'AIR개발팀', status:'done'}, {name:'오치관', dept:'RELAX상품기획팀', status:'done'}, {name:'임승희', dept:'연구소운영팀', status:'done'}, {name:'장민경', dept:'RELAX상품기획팀', status:'done'}], preAttendees:[] },
+      { id:20, cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', pre:0, done:24, date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', instructor:'DATF 이인탁 님', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'강세리', dept:'기술전략팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김규태', dept:'신뢰성팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김동규', dept:'AIR시스템개발팀', status:'done'}, {name:'김서영', dept:'기술전략팀', status:'done'}, {name:'김화빈', dept:'환경분석팀', status:'done'}, {name:'문성일', dept:'Air개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'배병규', dept:'Air개발2팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'염승목', dept:'Water인증팀', status:'done'}, {name:'윤채영', dept:'포장개발팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이재호', dept:'Living전장개발팀', status:'done'}, {name:'임인묵', dept:'Air개발2팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조형묵', dept:'Air개발2팀', status:'done'}, {name:'최새나', dept:'환경분석팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}], preAttendees:[] },
+      { id:21, cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브의 이해', pre:0, done:16, date:'2026.05.29(금) 09:30~11:30', location:'연구소 6층 대회의실', instructor:'DATF 이인탁 님', target:'전체', status:'complete', budget:'집행완료', attendees:[{name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이정수', dept:'신뢰성팀', status:'done'}, {name:'이진욱', dept:'Sleep개발팀', status:'done'}, {name:'임동욱', dept:'Sleep개발팀', status:'done'}, {name:'임성은', dept:'Living개발1팀', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'임채희', dept:'Water개발2팀', status:'done'}, {name:'정운호', dept:'Water개발3팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'천부관', dept:'Water전장개발팀', status:'done'}, {name:'한경덕', dept:'Air전장개발팀', status:'done'}, {name:'홍성권', dept:'Water개발2팀', status:'done'}], preAttendees:[] }
+    ];
+    // §COURSES_END§
+
+    // 연구원 데이터 — courses에서 이수자/사전신청자 파싱하여 동적 생성
+    function buildResearchers() {
+      const map = {};
+      courses.forEach(c => {
+        const addEntry = (a, type) => {
+          const key = a.name + '||' + a.dept;
+          if (!map[key]) map[key] = { name: a.name, dept: a.dept, doneCourses: [], preCourses: [] };
+          map[key][type === 'done' ? 'doneCourses' : 'preCourses'].push(
+            { name: c.name, date: c.date, cat: c.cat, catClass: c.catClass }
+          );
+        };
+        (c.attendees   || []).forEach(a => addEntry(a, 'done'));
+        (c.preAttendees|| []).forEach(a => addEntry(a, 'pre'));
+      });
+      return Object.values(map).sort(
+        (a, b) => (b.doneCourses.length + b.preCourses.length) - (a.doneCourses.length + a.preCourses.length)
+      );
+    }
+    let researchers = buildResearchers();
+
+    // Monthly edu data
+                                                                                                                                // §MONTHLY_START§
+    const monthlyEdu = {
+      1: { title:'1월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'1월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
+      2: {
+        title:'2월 수강 신청 과정', total:2,
+        period:'신청 기간: 미정',
+        desc:'2월 교육 계획입니다.',
+        courses:[
+        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 1차 귀임자 과정', desc:'', instructor:'사내강사', date:'2026.02.23(월) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, target:'전체', applyType:'open' },
+        { cat:'온보딩', catClass:'cat-onboarding', name:'커피정수기 이해 및 제품분해 실습', desc:'캠슐 커피 정수기의 내부 설계 구조 및 시스템에 대한 이해.', instructor:'주우진', date:'2026.02.23(월) 13:00~15:00', location:'연구소 대강당', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      3: {
+        title:'3월 수강 신청 과정', total:1,
+        period:'신청 기간: 미정',
+        desc:'3월 교육 계획입니다.',
+        courses:[
+        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 2차 과정', desc:'신규 전입 입사자 온보딩 교육', instructor:'사내강사', date:'2026.03.25~26(수,목) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      4: { title:'4월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'4월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
+      5: {
+        title:'5월 수강 신청 과정', total:2,
+        period:'신청 기간: 미정',
+        desc:'5월 교육 계획입니다.',
+        courses:[
+        { cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', desc:'노트북LM을 활용한 설계 품질 지식 관리 및 리뷰', instructor:'DATF 이인탁 님', date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, target:'전체', applyType:'open' },
+        { cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브의 이해', desc:'정수기 주요 기능성 밸브의 배경이론, 기능, 원리, 설계, 평가 방법', instructor:'DATF 이인탁 님', date:'2026.05.29(금) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      6: {
+        title:'6월 수강 신청 과정', total:12,
+        period:'신청 기간: 미정',
+        desc:'6월 교육 계획입니다.',
+        courses:[
+        { cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', desc:'공채 1기 신입 연구원을 대상으로 정수기 및 비데 제품의 실제 설치 프로세스와 환경을 학습하는 현장 실습 교육입니다.', instructor:'박용걸, 박대희 님', date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', seats:19, target:'전체', applyType:'open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항 등을 다룹니다.', instructor:'DATF 이정환 님', date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:16, target:'전체', applyType:'open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', desc:'구성, 원리, 제조 및 성능, 검증 방법에 대한 교육입니다.', instructor:'DATF 이인탁 님', date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:13, target:'전체', applyType:'open' },
+        { cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', desc:'경쟁사 회피 설계 방법론 ( LG 보냉 정수기 개발 사례 포함)', instructor:'IP팀 이준석 님', date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:27, target:'전체', applyType:'open' },
+        { cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', desc:'준비물: 개인 노트북 지참 필수', instructor:'IP팀 차용호 님', date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:25, target:'전체', applyType:'open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', desc:'자사 생산 공정상의 검사 기술에 대한 전반적 교육', instructor:'DATF 이인탁 님', date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:15, target:'전체', applyType:'open' },
+        { cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', desc:'PM 기본 과정 단독 수강 가능 과정입니다.', instructor:'외부 전문 강사', date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', seats:21, target:'전체', applyType:'open' },
+        { cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', desc:'1일차 기본 + 2일차 실무 워크숍 연계 진행 코스입니다.', instructor:'외부 전문 강사', date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      7: {
+        title:'7월 수강 신청 과정', total:8,
+        period:'신청 기간: 미정',
+        desc:'7월 교육 계획입니다.',
+        courses:[
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 홍현진 님', date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:10, target:'전체', applyType:'open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', desc:'생산기술 현황, TRM 및 제품 라인업 협업', instructor:'DATF 이인탁 님', date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:14, target:'전체', applyType:'open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', desc:'AI와 구글 앱스크립트를 연동하여 기초적인 업무 자동화를 구현합니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', desc:'안티그래비티 도구를 활용한 심화 바이브 코딩 실습 과정입니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      8: {
+        title:'8월 수강 신청 과정', total:4,
+        period:'신청 기간: 미정',
+        desc:'8월 교육 계획입니다.',
+        courses:[
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      9: {
+        title:'9월 수강 신청 과정', total:4,
+        period:'신청 기간: 미정',
+        desc:'9월 교육 계획입니다.',
+        courses:[
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      10: {
+        title:'10월 수강 신청 과정', total:4,
+        period:'신청 기간: 미정',
+        desc:'10월 교육 계획입니다.',
+        courses:[
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      11: {
+        title:'11월 수강 신청 과정', total:4,
+        period:'신청 기간: 미정',
+        desc:'11월 교육 계획입니다.',
+        courses:[
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      },
+      12: {
+        title:'12월 수강 신청 과정', total:4,
+        period:'신청 기간: 미정',
+        desc:'12월 교육 계획입니다.',
+        courses:[
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open' },
+        ]
+      }
+    };
+    // §MONTHLY_END§
+
+    // ── GOOGLE SHEETS 연동 ──
+    const SHEETS_API_KEY = 'AQ.Ab8RN6KNQW1A67AhcgAJBJvUkiJgsgdLbTiGlEJl76BHVOp9eA';
+    const SPREADSHEET_ID = '16P43btCx6b4nkna6HmHck1Euz46m5z8V';
+    const SHEET_GID = 1997006382;
+
+    const CAT_CLASS_MAP = {
+      '온보딩': 'cat-onboarding',
+      '지식공유': 'cat-knowledge',
+      'IP전략': 'cat-ip',
+      '실패사례': 'cat-failure',
+      'PM기본': 'cat-pm',
+      'PM교육': 'cat-pm',
+      '직무실무': 'cat-failure',
+      '제품실무': 'cat-failure',
+    };
+
+    function getCatClass(cat) {
+      return CAT_CLASS_MAP[cat] || 'cat-knowledge';
+    }
+
+    function extractMonth(dateStr) {
+      if (!dateStr) return null;
+      const m4 = dateStr.match(/20\d{2}[.\-\/](\d{1,2})[.\-\/]/);
+      if (m4) return parseInt(m4[1]);
+      const m2 = dateStr.match(/^(\d{1,2})[\/\-]/);
+      if (m2) return parseInt(m2[1]);
+      return null;
+    }
+
+    function applySheetData(rows) {
+      if (!rows || !rows.length) return;
+
+      courses.length = 0;
+      rows.forEach(function(row, i) {
+        const date = row['일시'] || '';
+        const time = row['시간'] || '';
+        const dateStr = time ? date + ' ' + time : date;
+        courses.push({
+          id: i + 1,
+          cat: row['구분'] || '',
+          catClass: getCatClass(row['구분'] || ''),
+          name: row['교육명'] || '',
+          pre: parseInt(row['정원']) || 0,
+          done: 0,
+          date: dateStr.trim(),
+          location: row['장소'] || '',
+          instructor: row['강사'] || '',
+          target: '전체',
+          status: 'progress',
+          budget: '미집행',
+          attendees: [],
+        });
+      });
+
+      const monthGroups = {};
+      rows.forEach(function(row) {
+        const m = extractMonth(row['일시'] || '');
+        if (!m) return;
+        if (!monthGroups[m]) monthGroups[m] = [];
+        const date = row['일시'] || '';
+        const time = row['시간'] || '';
+        monthGroups[m].push({
+          cat: row['구분'] || '',
+          catClass: getCatClass(row['구분'] || ''),
+          name: row['교육명'] || '',
+          desc: row['세부 내용'] || '',
+          instructor: row['강사'] || '',
+          date: (time ? date + ' ' + time : date).trim(),
+          location: row['장소'] || '',
+          seats: parseInt(row['정원']) || null,
+          target: '전체',
+          applyType: 'open',
+        });
+      });
+
+      Object.keys(monthGroups).forEach(function(m) {
+        const mi = parseInt(m);
+        if (monthlyEdu[mi]) {
+          monthlyEdu[mi].courses = monthGroups[mi];
+          monthlyEdu[mi].total = monthGroups[mi].length;
+        } else {
+          monthlyEdu[mi] = {
+            title: mi + '월 수강 신청 과정',
+            total: monthGroups[mi].length,
+            period: '신청 기간: 미정',
+            desc: mi + '월 교육 계획입니다.',
+            courses: monthGroups[mi],
+          };
+        }
+      });
+
+      renderCourseTable(courses);
+      renderMonthContent(currentMonth);
+      showToast('✅ 구글 시트에서 최신 교육 정보를 불러왔습니다.');
+    }
+
+    function loadFromSheet() {
+      let isLoaded = false;
+      const timeoutId = setTimeout(() => {
+        if (!isLoaded) {
+          console.warn('구글 시트 API 연결 시간 초과');
+          showSyncErrorBanner();
+        }
+      }, 3000);
+
+      // 1단계: 시트 이름 조회
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SPREADSHEET_ID +
+            '?key=' + SHEETS_API_KEY + '&fields=sheets.properties')
+        .then(function(r) { 
+          if (!r.ok) throw new Error('API Response Not OK (' + r.status + ')');
+          return r.json(); 
+        })
+        .then(function(meta) {
+          var found = (meta.sheets || []).find(function(s) {
+            return s.properties.sheetId === SHEET_GID;
+          });
+          var sheetName = found ? found.properties.title : meta.sheets[0].properties.title;
+          // 2단계: 데이터 조회
+          return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SPREADSHEET_ID +
+                       '/values/' + encodeURIComponent(sheetName) + '?key=' + SHEETS_API_KEY);
+        })
+        .then(function(r) { 
+          if (!r.ok) throw new Error('API Response Not OK (' + r.status + ')');
+          return r.json(); 
+        })
+        .then(function(data) {
+          isLoaded = true;
+          clearTimeout(timeoutId);
+          var values = data.values || [];
+          if (values.length < 2) {
+            showSyncErrorBanner();
+            return;
+          }
+          var headers = values[0].map(function(h) { return String(h).trim(); });
+          var rows = values.slice(1).map(function(row) {
+            var obj = {};
+            headers.forEach(function(h, i) { obj[h] = String(row[i] || '').trim(); });
+            return obj;
+          }).filter(function(r) { return Object.values(r).some(function(v) { return v !== ''; }); });
+          if (rows.length) {
+            applySheetData(rows);
+            document.getElementById('syncErrorBanner').style.display = 'none';
+          } else {
+            showSyncErrorBanner();
+          }
+        })
+        .catch(function(err) {
+          isLoaded = true;
+          clearTimeout(timeoutId);
+          console.warn('구글 시트 API 연결 실패:', err.message || err);
+          showSyncErrorBanner();
+        });
+    }
+
+    function showSyncErrorBanner() {
+      // 실시간 시트 연결 실패 시 배너 비표시 — sync.js가 매일 12:00/18:00 자동 갱신하므로 데이터는 항상 최신 상태
+      console.warn('[교육포털] 구글 시트 실시간 연결 불가 (오프라인 데이터 사용 중)');
+    }
+
+    function showSyncGuide() {
+      document.getElementById('syncGuideModal').classList.add('show');
+    }
+
+    function closeSyncGuide() {
+      document.getElementById('syncGuideModal').classList.remove('show');
+    }
+
+    // ── STATE ──
+    let currentMode = null;
+    let currentAdminTab = 'dashboard';
+    let currentMonth = 6;
+    let selectedCourseId = null;
+
+    // ── MODE SELECT ──
+    function enterAdminMode() {
+      document.getElementById('modeSelectScreen').style.display = 'none';
+      requestAdminAccess();
+    }
+
+    function enterResearcherMode() {
+      document.getElementById('modeSelectScreen').style.display = 'none';
+      document.getElementById('adminMode').style.display = 'none';
+      document.getElementById('researcherMode').style.display = 'block';
+      document.querySelector('.mode-bar').style.display = 'none';
+      currentMode = 'researcher';
+      renderMonthContent(currentMonth);
+    }
+
+    // ── MODE SWITCH ──
+    // ── PASSWORD & AUTH ──
+    const ADMIN_PASSWORD = 'coway2025'; // ← 비밀번호 변경 시 여기만 수정
+    let isAdminAuthenticated = false;
+
+    function requestAdminAccess() {
+      if (isAdminAuthenticated) {
+        // Already authed — just switch to admin
+        activateAdminMode();
+        return;
+      }
+      // Show modal
+      document.getElementById('pwModal').classList.add('show');
+      setTimeout(() => document.getElementById('pwInput').focus(), 250);
+    }
+
+    function submitPassword() {
+      const val = document.getElementById('pwInput').value;
+      if (val === ADMIN_PASSWORD) {
+        isAdminAuthenticated = true;
+        closeModal();
+        activateAdminMode();
+        showToast('✅ 관리자 모드로 접속했습니다.');
+      } else {
+        const input = document.getElementById('pwInput');
+        input.classList.add('error');
+        document.getElementById('pwError').classList.add('show');
+        input.value = '';
+        setTimeout(() => input.classList.remove('error'), 400);
+      }
+    }
+
+    function clearPwError() {
+      document.getElementById('pwError').classList.remove('show');
+    }
+
+    function closeModal() {
+      document.getElementById('pwModal').classList.remove('show');
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwError').classList.remove('show');
+      // 아직 모드가 미선택 상태면 선택 화면으로 복귀
+      if (!currentMode) {
+        document.getElementById('modeSelectScreen').style.display = 'flex';
+      }
+    }
+
+    function togglePwVis() {
+      const input = document.getElementById('pwInput');
+      const eye = document.getElementById('pwEye');
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        eye.textContent = '👁';
+      }
+    }
+
+    function activateAdminMode() {
+      currentMode = 'admin';
+      document.getElementById('modeSelectScreen').style.display = 'none';
+      document.getElementById('adminMode').style.display = 'block';
+      document.getElementById('researcherMode').style.display = 'none';
+      document.querySelector('.mode-bar').style.display = 'flex';
+      document.getElementById('modeAdminBtn').className = 'mode-btn active-admin';
+      document.getElementById('modeResearcherBtn').className = 'mode-btn';
+      document.getElementById('adminLockHint').textContent = '🔓';
+    }
+
+    function switchMode(mode, btn) {
+      currentMode = mode;
+      document.getElementById('modeSelectScreen').style.display = 'none';
+      document.getElementById('adminMode').style.display = mode === 'admin' ? 'block' : 'none';
+      document.getElementById('researcherMode').style.display = mode === 'researcher' ? 'block' : 'none';
+      document.getElementById('modeAdminBtn').className = 'mode-btn' + (mode === 'admin' ? ' active-admin' : '');
+      document.getElementById('modeResearcherBtn').className = 'mode-btn' + (mode === 'researcher' ? ' active-researcher' : '');
+      if (mode === 'researcher') renderMonthContent(currentMonth);
+    }
+
+    function switchAdminTab(tab, btn) {
+      currentAdminTab = tab;
+      document.querySelectorAll('#adminTabBar .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#adminMode .view').forEach(v => v.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      if (tab === 'matrix') renderCourseTable(courses);
+      if (tab === 'researchers') renderResearchers(researchers);
+    }
+
+    // ── MONTH ──
+    function switchMonth(month, btn) {
+      currentMonth = month;
+      document.querySelectorAll('.month-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMonthContent(month);
+    }
+
+    let currentCategory = '전체';
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      renderMonthContent(currentMonth);
+    }
+
+    function renderMonthContent(month) {
+      const data = monthlyEdu[month];
+      const container = document.getElementById('monthContent');
+      if (!data || data.courses.length === 0) {
+        container.innerHTML = `
+      <div style="background:linear-gradient(135deg,var(--brand-deep),#1565C0,var(--brand-teal));color:white;padding:32px 28px">
+        <div style="font-size:11px;opacity:0.7;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">COWAY R&D CENTER · LEARNING PORTAL</div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px">${month}월 교육 예정</div>
+        <div style="font-size:14px;opacity:0.8">${data.period}</div>
+      </div>
+      <div style="padding:60px 28px;text-align:center;color:var(--text-muted)">
+        <div style="font-size:48px;margin-bottom:16px">📅</div>
+        <div style="font-size:16px;font-weight:600;color:var(--text-secondary);margin-bottom:8px">${month}월 교육 계획 수립 중</div>
+        <div style="font-size:13px">${data.desc}</div>
+      </div>`;
+        return;
+      }
+
+      // 카테고리 필터링 적용
+      const filteredCourses = currentCategory === '전체'
+        ? data.courses
+        : data.courses.filter(c => {
+            const catLower = (c.cat || '').toLowerCase();
+            const filterLower = currentCategory.toLowerCase();
+            
+            if (filterLower === '특허 온라인 교육') {
+              return catLower.includes('특허') || catLower.includes('온라인');
+            }
+            if (filterLower === 'pm교육') {
+              return catLower.includes('pm');
+            }
+            if (filterLower === '제품실무') {
+              // 제품실무/직무실무/실패사례 등 유사 카테고리 매칭 지원
+              return catLower.includes('제품') || catLower.includes('직무') || catLower.includes('실무') || catLower.includes('failure');
+            }
+            return catLower.includes(filterLower);
+          });
+
+      const todayMonth = new Date().getMonth() + 1;
+      const isMonthPast = month < todayMonth;
+
+      function isCourseDatePast(dateStr) {
+        const m = (dateStr || '').match(/20(\d{2})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
+        if (!m) return false;
+        const d = new Date(2000 + parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3]));
+        d.setHours(23, 59, 59);
+        return d < new Date();
+      }
+
+      const coursesHTML = filteredCourses.map(c => {
+        const courseCompleted = isMonthPast || isCourseDatePast(c.date);
+        const applyBtn = courseCompleted
+          ? `<button class="apply-btn completed-btn" disabled>교육 완료</button>`
+          : `<button class="apply-btn ${c.applyType === 'target' ? 'target-only' : ''}" onclick="handleApply('${c.name}','${c.applyType || 'open'}')">
+          ${c.applyType === 'target' ? '지정 임대 교육' : '지금 바로 신청하기'}
+        </button>`;
+        return `
+    <div class="course-card">
+      <div class="course-card-top">
+        <div class="course-card-cat"><span class="cat-badge ${c.catClass}">${c.cat}</span>${c.target !== '전체' ? ' <span class="cat-badge cat-onboarding">' + c.target + '</span>' : ''}</div>
+        <div class="course-card-title">${c.name}</div>
+        <div class="course-card-desc">${c.desc || ''}</div>
+        <div class="course-card-meta">
+          <div class="meta-row"><span class="meta-icon">👤</span> 강사: ${c.instructor || '미정'}</div>
+          <div class="meta-row"><span class="meta-icon">📅</span> 일시: ${c.date || '일정 조율 중'}</div>
+          <div class="meta-row"><span class="meta-icon">📍</span> 장소: ${c.location || '연구소'}</div>
+        </div>
+      </div>
+      <div class="course-card-footer">
+        <div class="seat-info">${c.seats ? '정원: <strong>' + c.seats + '명</strong>' : '정원 미정'}</div>
+        ${applyBtn}
+      </div>
+    </div>
+  `;
+      }).join('');
+
+      const categories = ['전체', '제품실무', '지식공유', 'IP전략', 'PM교육', '특허 온라인 교육', 'AI교육'];
+      const filterButtonsHTML = categories.map(cat => `
+        <button class="cat-filter-btn ${currentCategory === cat ? 'active-all' : ''}" onclick="filterCategory('${cat}')">${cat}</button>
+      `).join('');
+
+      container.innerHTML = `
+    <div class="edu-hero">
+      <div class="edu-hero-eyebrow">COWAY R&D CENTER · LEARNING PORTAL · JUNE 2026</div>
+      <div class="edu-hero-title">스스로 디자인하는 자율 선택형 교육</div>
+      <div class="edu-hero-sub">${data.desc}</div>
+      <div class="edu-hero-chips">
+        <div class="hero-chip"><div class="hero-chip-icon">🎯</div><div><div class="hero-chip-label">운영 핵심</div><div class="hero-chip-value">현장 참여 사정에 맞춰 자율로 교육 선택</div></div></div>
+        <div class="hero-chip"><div class="hero-chip-icon">📅</div><div><div class="hero-chip-label">신청 기간</div><div class="hero-chip-value">${data.period}</div></div></div>
+        <div class="hero-chip"><div class="hero-chip-icon">📋</div><div><div class="hero-chip-label">향후 계획</div><div class="hero-chip-value">교육과제 교육 계획 수립 후 임시 계획 팀장 공지</div></div></div>
+        <div class="hero-chip"><div class="hero-chip-icon">⚠️</div><div><div class="hero-chip-label">유의 사항</div><div class="hero-chip-value">신청 인원 8명 이하 시 해당 과정 폐강 가능</div></div></div>
+      </div>
+    </div>
+    <div class="category-filter">
+      ${filterButtonsHTML}
+    </div>
+    <div style="padding:8px 28px;font-size:13px;color:var(--text-secondary);background:white;border-bottom:1px solid var(--border)">
+      ${month}월 수강 신청 과정 &nbsp;·&nbsp; <strong style="color:var(--text-primary)">Total ${data.courses.length} Courses</strong>
+    </div>
+    <div class="courses-grid">${coursesHTML}</div>
+  `;
+    }
+
+    function handleApply(name, type) {
+      if (type === 'target') {
+        showToast('이 과정은 지정 대상자 교육입니다.\n담당자에게 문의하세요.');
+      } else {
+        window.open('https://edu.coway.com/emp', '_blank');
+      }
+    }
+
+    // ── COURSE TABLE ──
+    function renderCourseTable(list) {
+      const tbody = document.getElementById('courseTableBody');
+      tbody.innerHTML = list.map(c => `
+    <tr onclick="selectCourse(${c.id})" id="row-${c.id}" ${selectedCourseId === c.id ? 'class="selected"' : ''}>
+      <td><span class="cat-badge ${c.catClass}">${c.cat}</span></td>
+      <td>
+        <div class="course-name">${c.name}</div>
+        <div class="course-status">
+          <span class="status-dot ${c.status === 'complete' ? 'status-complete' : 'status-progress'}"></span>
+          <span style="font-size:11px;color:var(--text-muted)">${c.status === 'complete' ? '수료 완료 · 사전 이수율 100%' : '진행 예정'}</span>
+        </div>
+      </td>
+      <td class="course-nums">${c.pre}명 / ${c.done || '-'}명</td>
+      <td class="course-date">${c.date.split(' ')[0]}<br><span style="color:var(--text-muted)">${c.date.split(' ')[1] || ''}</span></td>
+    </tr>
+  `).join('');
+    }
+
+    function selectCourse(id) {
+      selectedCourseId = id;
+      document.querySelectorAll('#courseTableBody tr').forEach(r => r.classList.remove('selected'));
+      const row = document.getElementById('row-' + id);
+      if (row) row.classList.add('selected');
+      const c = courses.find(x => x.id === id);
+      if (!c) return;
+      const isMiss = c.budget === '미집행';
+
+      // 날짜 기준으로 과거 교육인지 판단
+      function isPast(dateStr) {
+        const m = dateStr.match(/20(\d{2})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
+        if (!m) return false;
+        const d = new Date(2000 + parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3]));
+        d.setHours(23, 59, 59);
+        return d < new Date();
+      }
+      const past = isPast(c.date) || c.status === 'complete';
+
+      // 이수자 or 사전신청자 목록 렌더링
+      function renderList(list, emptyMsg, badgeLabel, badgeClass) {
+        if (!list || list.length === 0)
+          return `<div style="color:var(--text-muted);font-size:12px;padding:8px 0">${emptyMsg}</div>`;
+        return list.map(a => `
+          <div class="attendee-row">
+            <div class="attendee-name">${a.name}</div>
+            <div class="attendee-dept">${a.dept || ''}</div>
+            <span class="${badgeClass}">${badgeLabel}</span>
+          </div>`).join('');
+      }
+
+      const listTitle = past ? '✅ 이수자 명단' : '👥 사전 신청자 명단';
+      const listData  = past ? c.attendees : (c.preAttendees || []);
+      const emptyMsg  = past ? '이수자 명단 없음' : '사전 신청자 없음';
+      const badgeCls  = past ? 'check-badge' : 'pending-badge';
+      const badgeTxt  = past ? '✓ 이수완료' : '신청완료';
+      const attendeesHTML = renderList(listData, emptyMsg, badgeTxt, badgeCls);
+
+      document.getElementById('detailPanel').innerHTML = `
+    <div class="detail-header">
+      <span class="cat-badge ${c.catClass}">${c.cat}</span>
+      <span class="cat-badge ${c.status === 'complete' ? 'cat-knowledge' : 'cat-onboarding'}">${c.status === 'complete' ? '수료 완료' : '진행 예정'}</span>
+    </div>
+    <div class="detail-title">${c.name}</div>
+    <div class="detail-grid">
+      <div class="detail-field">
+        <div class="detail-field-label">📅 교육 일정</div>
+        <div class="detail-field-value">${c.date}</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">📍 교육 장소</div>
+        <div class="detail-field-value">${c.location}</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">👤 강사</div>
+        <div class="detail-field-value">${c.instructor}</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">🎯 교육 대상</div>
+        <div class="detail-field-value">${c.target}</div>
+      </div>
+    </div>
+    <div class="detail-field" style="margin-bottom:14px">
+      <div class="detail-field-label">💰 교육비 집행 비용</div>
+      <div style="margin-top:6px">
+        <span style="background:${isMiss ? '#FFF8E1' : '#E8F5E9'};color:${isMiss ? '#F57C00' : '#2E7D32'};padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700">
+          ${isMiss ? '⏳ 미집행 (집행 대기 중)' : '✅ 집행 완료'}
+        </span>
+      </div>
+    </div>
+    <div class="detail-section-title">📊 실제 수강 성과 및 출석 분석</div>
+    <div class="metrics-row">
+      <div class="metric-box">
+        <div class="metric-val">${c.pre > 0 ? Math.round(c.done / c.pre * 100) + '%' : '-'}</div>
+        <div class="metric-lbl">사전 이수율<br>${c.done}/${c.pre}명</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">+0명</div>
+        <div class="metric-lbl">현장 추가 수료<br>자발적 참여자</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">${c.done}명</div>
+        <div class="metric-lbl">총 수료 인원<br>시스템 연동 기준</div>
+      </div>
+    </div>
+    <div class="detail-section-title">${listTitle}</div>
+    <div class="attendee-list">${attendeesHTML}</div>
+    <div style="margin-top:8px;font-size:11px;color:var(--text-muted)">COWAY R&D 1:1 수강 대장 매칭 · ✅ 검증완료</div>
+  `;
+    }
+
+    function filterCourses(query) {
+      const q = query.toLowerCase();
+      const filtered = courses.filter(c => c.name.toLowerCase().includes(q) || c.cat.includes(q));
+      renderCourseTable(filtered);
+    }
+
+    function filterByTag(tag, btn) {
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filtered = tag === '전체' ? courses : courses.filter(c => c.cat === tag);
+      renderCourseTable(filtered);
+      selectedCourseId = null;
+      document.getElementById('detailPanel').innerHTML = `<div style="text-align:center;padding:40px 0;color:var(--text-muted)"><div style="font-size:40px;margin-bottom:12px">📋</div><div style="font-size:14px;font-weight:600;">과정을 선택하면<br>상세 정보가 표시됩니다</div></div>`;
+    }
+
+    // ── RESEARCHERS ──
+    function renderResearchers(list) {
+      const grid = document.getElementById('researchersGrid');
+      if (!list.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)"><div style="font-size:36px;margin-bottom:12px">🔍</div><div style="font-weight:600">검색 결과가 없습니다</div></div>';
+        return;
+      }
+      grid.innerHTML = list.map(r => {
+        const avatar = r.name ? r.name.charAt(0) : '?';
+        const doneHTML = r.doneCourses.length
+          ? r.doneCourses.map(c => `
+            <div class="rc-item">
+              <span class="rc-item-badge done">이수</span>
+              <div>
+                <div class="rc-name">${c.name}</div>
+                <div style="font-size:11px;color:var(--text-muted)">📅 ${c.date || '일정 미정'}</div>
+              </div>
+            </div>`).join('')
+          : '<div class="rc-section-empty">이수 내역 없음</div>';
+        const preHTML = r.preCourses.length
+          ? r.preCourses.map(c => `
+            <div class="rc-item">
+              <span class="rc-item-badge pre">사전</span>
+              <div>
+                <div class="rc-name">${c.name}</div>
+                <div style="font-size:11px;color:var(--text-muted)">📅 ${c.date || '일정 미정'}</div>
+              </div>
+            </div>`).join('')
+          : '<div class="rc-section-empty">사전신청 내역 없음</div>';
+        return `
+    <div class="researcher-card">
+      <div class="researcher-top">
+        <div class="researcher-avatar">${avatar}</div>
+        <div>
+          <div class="researcher-name">${r.name}</div>
+          <div class="researcher-dept">${r.dept || '소속 미기재'}</div>
+          <div class="researcher-count">이수 ${r.doneCourses.length}과목 · 사전신청 ${r.preCourses.length}과목</div>
+        </div>
+      </div>
+      <div class="researcher-courses">
+        <div class="rc-section-title done">✅ 이수 과목 (${r.doneCourses.length})</div>
+        ${doneHTML}
+        <div class="rc-section-title pre" style="margin-top:12px">📋 사전신청 과목 (${r.preCourses.length})</div>
+        ${preHTML}
+      </div>
+    </div>`;
+      }).join('');
+    }
+
+    function filterResearchers(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) { renderResearchers(researchers); return; }
+      const filtered = researchers.filter(r =>
+        r.name.toLowerCase().includes(q) || (r.dept || '').toLowerCase().includes(q)
+      );
+      renderResearchers(filtered);
+    }
+
+    // ── TOAST ──
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ── INIT ──
+    document.addEventListener('DOMContentLoaded', () => {
+      // 모드 선택 화면 표시 (둘 다 숨김)
+      document.getElementById('adminMode').style.display = 'none';
+      document.getElementById('researcherMode').style.display = 'none';
+      document.querySelector('.mode-bar').style.display = 'none';
+
+      // 데이터 사전 렌더 (백그라운드)
+      renderCourseTable(courses);
+      renderResearchers(researchers);
+      loadFromSheet();
+      setTimeout(() => {
+        const lb = document.getElementById('loadingBar');
+        if (lb) lb.remove();
+      }, 1400);
+    });
+  </script>
+</body>
+
+</html>
