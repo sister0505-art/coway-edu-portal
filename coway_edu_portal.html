@@ -1777,7 +1777,7 @@
     <!-- ── DASHBOARD ── -->
     <div id="tab-dashboard" class="view active">
       <div class="content">
-                                                                                                                                                                        <!-- §DASHBOARD_START§ -->
+                                                                                                                                                                                <!-- §DASHBOARD_START§ -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon blue">📚</div>
@@ -1791,7 +1791,7 @@
             <div class="stat-icon red">✅</div>
             <div>
               <div class="stat-label">진행완료 / 진행예정</div>
-              <div class="stat-value">6<span style="font-size:14px;color:var(--text-secondary)">/</span>15<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span></div>
+              <div class="stat-value">7<span style="font-size:14px;color:var(--text-secondary)">/</span>14<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span></div>
               <div class="stat-sub">일정 기준 자동 분류</div>
             </div>
           </div>
@@ -1994,22 +1994,22 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title"><span class="card-title-icon">💡</span> R&D 수료 및 분석 오피니언</div>
-              <span class="card-sub">2026년 6월 12일 기준</span>
+              <span class="card-sub">2026년 6월 13일 기준</span>
             </div>
             <div class="card-body">
               <div class="opinion-list">
 
                 <div class="opinion-item">
                   <div class="opinion-icon">✅</div>
-                  <div class="opinion-text"><strong>수료 완료 과정:</strong> 현재까지 총 <strong>6개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>74명</strong>이 확정되었습니다.</div>
+                  <div class="opinion-text"><strong>수료 완료 과정:</strong> 현재까지 총 <strong>7개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>74명</strong>이 확정되었습니다.</div>
                 </div>
                 <div class="opinion-item">
                   <div class="opinion-icon">✅</div>
                   <div class="opinion-text"><strong>이수율 달성 현황:</strong> 수료 과정의 사전 신청자 대비 평균 이수율이 <strong>100%</strong>로 집계되었습니다.</div>
                 </div>
                 <div class="opinion-item">
-                  <div class="opinion-icon">✅</div>
-                  <div class="opinion-text"><strong>예산 집행 현황:</strong> 전체 21개 과정 중 집행 완료 <strong>6개</strong> — 완료 과정의 예산이 모두 집행되었습니다.</div>
+                  <div class="opinion-icon">⚠️</div>
+                  <div class="opinion-text"><strong>예산 집행 현황:</strong> 전체 21개 과정 중 집행 완료 <strong>6개</strong>, 교육 완료 후 미집행 <strong style="color:#E53935">1건</strong> — 예산 집행 처리가 필요합니다.</div>
                 </div>
                 <div class="opinion-item">
                   <div class="opinion-icon">🚫</div>
@@ -2083,7 +2083,7 @@
 ═══════════════════════════════════════════ -->
   <div id="researcherMode" style="display:none">
     <div class="month-tabs" id="monthTabBar">
-                                                                                                                                    <!-- §TABS_START§ -->
+                                                                                                                                          <!-- §TABS_START§ -->
       <button class="month-tab-btn" onclick="switchMonth(2, this)">2월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(3, this)">3월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(5, this)">5월 <span class="month-tag past-tag">완료</span></button>
@@ -2150,10 +2150,10 @@
 
   <script>
     // ── DATA ──
-                                                                                                                                                // §COURSES_START§
+                                                                                                                                                    // §COURSES_START§
     const courses = [
       { id:1, cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', pre:19, done:19, date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', instructor:'박용걸, 박대희 님', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}], preAttendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}] },
-      { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:0, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
+      { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:0, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'complete', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
       { id:3, cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', pre:13, done:0, date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정진규', dept:'전장개발실', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
       { id:4, cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', pre:27, done:0, date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 이준석 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'김동규', dept:'Air시스템개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}] },
       { id:5, cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', pre:25, done:0, date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 차용호 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'리빙개발2팀', status:'done'}, {name:'김재훈', dept:'임베디드시스템개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'유근상', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정안리', dept:'선행개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
@@ -2197,7 +2197,7 @@
     let researchers = buildResearchers();
 
     // Monthly edu data
-                                                                                                                                                    // §MONTHLY_START§
+                                                                                                                                                        // §MONTHLY_START§
     const monthlyEdu = {
       1: { title:'1월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'1월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
       2: {
