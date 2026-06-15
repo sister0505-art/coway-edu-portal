@@ -789,6 +789,10 @@
       background: var(--warning);
     }
 
+    .status-canceled {
+      background: var(--text-muted);
+    }
+
     .course-nums {
       font-size: 13px;
       font-weight: 700;
@@ -894,6 +898,38 @@
       flex-direction: column;
       gap: 6px;
       margin-top: 10px;
+    }
+
+    .list-tab-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+      margin-bottom: 2px;
+    }
+
+    .list-tab-btn {
+      flex: 1;
+      padding: 7px 0;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-base);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .list-tab-btn.active-done {
+      background: #E3F0FF;
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+    }
+
+    .list-tab-btn.active-pre {
+      background: #E8F5E9;
+      border-color: #2E7D32;
+      color: #2E7D32;
     }
 
     .attendee-row {
@@ -1777,7 +1813,7 @@
     <!-- ── DASHBOARD ── -->
     <div id="tab-dashboard" class="view active">
       <div class="content">
-                                                                                                                                                                                                        <!-- §DASHBOARD_START§ -->
+                                                                                                                                                        <!-- §DASHBOARD_START§ -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon blue">📚</div>
@@ -1799,7 +1835,7 @@
             <div class="stat-icon green">🎓</div>
             <div>
               <div class="stat-label">실제 이수 완료 인원</div>
-              <div class="stat-value">74<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">명</span></div>
+              <div class="stat-value">97<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">명</span></div>
               <div class="stat-sub">CSV 이수자 명단 기준</div>
             </div>
           </div>
@@ -1807,7 +1843,7 @@
             <div class="stat-icon orange">%</div>
             <div>
               <div class="stat-label">평균 수료 이수율</div>
-              <div class="stat-value">100<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">%</span></div>
+              <div class="stat-value">122<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">%</span></div>
               <div class="stat-sub">사전 신청 대비 이수율</div>
             </div>
           </div>
@@ -1875,6 +1911,20 @@
               </div>
               <div class="bar-item">
                 <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
+                  <span>얼음 정수기의 이해</span>
+                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
+                    <span style="color:#1565C0;font-weight:700">이수 23명</span>
+                    <span style="color:#aaa;margin:0 3px">/</span>
+                    <span style="color:#43A047;font-weight:700">사전 16명</span>
+                  </span>
+                </div>
+                <div class="bar-track" style="display:flex;gap:2px">
+                  <div class="bar-fill" style="width:96%;background:#1565C0;border-radius:3px 0 0 3px"></div>
+                  <div class="bar-fill" style="width:67%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
                   <span>R&amp;D Tech 공채 1기 대상 재품군 설치 교육</span>
                   <span style="font-size:11px;white-space:nowrap;margin-left:8px">
                     <span style="color:#1565C0;font-weight:700">이수 19명</span>
@@ -1915,20 +1965,6 @@
                   <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
                 </div>
               </div>
-              <div class="bar-item">
-                <div class="bar-label" style="display:flex;justify-content:space-between;align-items:baseline">
-                  <span>온보딩 2차 과정</span>
-                  <span style="font-size:11px;white-space:nowrap;margin-left:8px">
-                    <span style="color:#1565C0;font-weight:700">이수 5명</span>
-                    <span style="color:#aaa;margin:0 3px">/</span>
-                    <span style="color:#43A047;font-weight:700">사전 0명</span>
-                  </span>
-                </div>
-                <div class="bar-track" style="display:flex;gap:2px">
-                  <div class="bar-fill" style="width:21%;background:#1565C0;border-radius:3px 0 0 3px"></div>
-                  <div class="bar-fill" style="width:0%;background:#43A047;border-radius:0 3px 3px 0;opacity:0.7"></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1948,7 +1984,7 @@
                   <div class="rank-count" style="font-size:11px">
                     <span style="color:#43A047;font-weight:700">사전 신청 27명</span>
                     <span style="color:#aaa;margin:0 3px">/</span>
-                    <span style="color:#1565C0;font-weight:700">이수 29명</span>
+                    <span style="color:#1565C0;font-weight:700">이수 37명</span>
                   </div>
                 </div>
                 <div class="rank-item">
@@ -1966,25 +2002,25 @@
                   <div class="rank-count" style="font-size:11px">
                     <span style="color:#43A047;font-weight:700">사전 신청 10명</span>
                     <span style="color:#aaa;margin:0 3px">/</span>
-                    <span style="color:#1565C0;font-weight:700">이수 4명</span>
+                    <span style="color:#1565C0;font-weight:700">이수 5명</span>
                   </div>
                 </div>
                 <div class="rank-item">
                   <div class="rank-num rank-other">4</div>
-                  <div class="rank-name">Air개발2팀</div>
+                  <div class="rank-name">Water전장개발팀</div>
                   <div class="rank-count" style="font-size:11px">
-                    <span style="color:#43A047;font-weight:700">사전 신청 0명</span>
+                    <span style="color:#43A047;font-weight:700">사전 신청 2명</span>
                     <span style="color:#aaa;margin:0 3px">/</span>
-                    <span style="color:#1565C0;font-weight:700">이수 4명</span>
+                    <span style="color:#1565C0;font-weight:700">이수 5명</span>
                   </div>
                 </div>
                 <div class="rank-item">
                   <div class="rank-num rank-other">5</div>
-                  <div class="rank-name">Living개발1팀</div>
+                  <div class="rank-name">Air전장개발팀</div>
                   <div class="rank-count" style="font-size:11px">
-                    <span style="color:#43A047;font-weight:700">사전 신청 9명</span>
+                    <span style="color:#43A047;font-weight:700">사전 신청 6명</span>
                     <span style="color:#aaa;margin:0 3px">/</span>
-                    <span style="color:#1565C0;font-weight:700">이수 3명</span>
+                    <span style="color:#1565C0;font-weight:700">이수 4명</span>
                   </div>
                 </div>
               </div>
@@ -1994,18 +2030,18 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title"><span class="card-title-icon">💡</span> R&D 수료 및 분석 오피니언</div>
-              <span class="card-sub">2026년 6월 14일 기준</span>
+              <span class="card-sub">2026년 6월 15일 기준</span>
             </div>
             <div class="card-body">
               <div class="opinion-list">
 
                 <div class="opinion-item">
                   <div class="opinion-icon">✅</div>
-                  <div class="opinion-text"><strong>수료 완료 과정:</strong> 현재까지 총 <strong>7개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>74명</strong>이 확정되었습니다.</div>
+                  <div class="opinion-text"><strong>수료 완료 과정:</strong> 현재까지 총 <strong>7개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>97명</strong>이 확정되었습니다.</div>
                 </div>
                 <div class="opinion-item">
                   <div class="opinion-icon">✅</div>
-                  <div class="opinion-text"><strong>이수율 달성 현황:</strong> 수료 과정의 사전 신청자 대비 평균 이수율이 <strong>100%</strong>로 집계되었습니다.</div>
+                  <div class="opinion-text"><strong>이수율 달성 현황:</strong> 수료 과정의 사전 신청자 대비 평균 이수율이 <strong>122%</strong>로 집계되었습니다.</div>
                 </div>
                 <div class="opinion-item">
                   <div class="opinion-icon">⚠️</div>
@@ -2083,7 +2119,7 @@
 ═══════════════════════════════════════════ -->
   <div id="researcherMode" style="display:none">
     <div class="month-tabs" id="monthTabBar">
-                                                                                                                                                            <!-- §TABS_START§ -->
+                                                                                                                        <!-- §TABS_START§ -->
       <button class="month-tab-btn" onclick="switchMonth(2, this)">2월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(3, this)">3월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(5, this)">5월 <span class="month-tag past-tag">완료</span></button>
@@ -2150,28 +2186,28 @@
 
   <script>
     // ── DATA ──
-                                                                                                                                                                // §COURSES_START§
+                                                                                                                                        // §COURSES_START§
     const courses = [
       { id:1, cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', pre:19, done:19, date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', instructor:'박용걸, 박대희 님', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}], preAttendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}] },
-      { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:0, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'complete', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
-      { id:3, cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', pre:13, done:0, date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정진규', dept:'전장개발실', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
-      { id:4, cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', pre:27, done:0, date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 이준석 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'김동규', dept:'Air시스템개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}] },
-      { id:5, cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', pre:25, done:0, date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 차용호 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'리빙개발2팀', status:'done'}, {name:'김재훈', dept:'임베디드시스템개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'유근상', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정안리', dept:'선행개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
-      { id:6, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', pre:15, done:0, date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}] },
-      { id:7, cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', pre:21, done:0, date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'오흥수', dept:'Watr개발4팀', status:'done'}, {name:'원량진', dept:'Sleep상품기획팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'임성혁', dept:'전장개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최범락', dept:'전장개발실', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'홍성권', dept:'Water개발2팀', status:'done'}] },
-      { id:8, cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', pre:0, done:0, date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:9, cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', pre:0, done:0, date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:10, cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', pre:0, done:0, date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:11, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:12, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:13, cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', pre:10, done:0, date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 홍현진 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}] },
-      { id:14, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', pre:14, done:0, date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'차재욱', dept:'BEREX전장개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}] },
-      { id:15, cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
-      { id:16, cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp', attendees:[], preAttendees:[] },
+      { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:23, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'complete', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209440', attendees:[{name:'신종민', dept:'Air전장개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'최광재', dept:'Water개발1팀', status:'done'}, {name:'김형진', dept:'Water개발2팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'김성민', dept:'Water전장개발팀', status:'done'}, {name:'천부관', dept:'Water전장개발팀', status:'done'}, {name:'이시온', dept:'Water전장개발팀', status:'done'}, {name:'박성수', dept:'Water전장개발팀', status:'done'}, {name:'김서영', dept:'기술전략팀', status:'done'}, {name:'김건영', dept:'신뢰성팀', status:'done'}, {name:'이정수', dept:'신뢰성팀', status:'done'}, {name:'김민경', dept:'환경분석팀', status:'done'}, {name:'김혜영', dept:'환경분석팀', status:'done'}], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
+      { id:3, cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', pre:13, done:0, date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209444', attendees:[], preAttendees:[{name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정진규', dept:'전장개발실', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
+      { id:4, cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', pre:27, done:0, date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 이준석 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209445', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'김동규', dept:'Air시스템개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}] },
+      { id:5, cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', pre:25, done:0, date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'IP팀 차용호 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209443', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'리빙개발2팀', status:'done'}, {name:'김재훈', dept:'임베디드시스템개발팀', status:'done'}, {name:'문유진', dept:'Sleep개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'박정우', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'유근상', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정안리', dept:'선행개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'주원일', dept:'힐링개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}] },
+      { id:6, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', pre:15, done:0, date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209439', attendees:[], preAttendees:[{name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}] },
+      { id:7, cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', canceled:true, pre:21, done:0, date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209446', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'강세리', dept:'기술전략팀', status:'done'}, {name:'강태경', dept:'Air전장개발팀', status:'done'}, {name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김영표', dept:'Living개발1팀', status:'done'}, {name:'김윤수', dept:'Living개발2팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'변준혁', dept:'신상품개발팀', status:'done'}, {name:'소유찬', dept:'임베디드시스템개발팀', status:'done'}, {name:'오유진', dept:'Healing상품기획팀', status:'done'}, {name:'오흥수', dept:'Watr개발4팀', status:'done'}, {name:'원량진', dept:'Sleep상품기획팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이현철', dept:'Sleep상품기획팀', status:'done'}, {name:'이혜영', dept:'Sleep개발팀', status:'done'}, {name:'임성혁', dept:'전장개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'최범락', dept:'전장개발실', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'홍성권', dept:'Water개발2팀', status:'done'}] },
+      { id:8, cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', canceled:true, pre:0, done:0, date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', instructor:'외부 전문 강사', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209447', attendees:[], preAttendees:[] },
+      { id:9, cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', pre:0, done:0, date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://b2b.ipacademy.net/coway/login.do', attendees:[], preAttendees:[] },
+      { id:10, cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', pre:0, done:0, date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://b2b.ipacademy.net/coway/login.do', attendees:[], preAttendees:[] },
+      { id:11, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://b2b.ipacademy.net/coway/login.do', attendees:[], preAttendees:[] },
+      { id:12, cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', pre:0, done:0, date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', instructor:'국가지식재산 교육 포털', target:'전체', status:'progress', budget:'미집행', applyUrl:'https://b2b.ipacademy.net/coway/login.do', attendees:[], preAttendees:[] },
+      { id:13, cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', pre:10, done:0, date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 홍현진 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'7월 open', attendees:[], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'박순혁', dept:'선행개발팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}, {name:'최인식', dept:'TechTalentTF', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}] },
+      { id:14, cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', pre:14, done:0, date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'7월 open', attendees:[], preAttendees:[{name:'강민구', dept:'Living개발1팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'박건우', dept:'Living개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'차재욱', dept:'BEREX전장개발팀', status:'done'}, {name:'최선미', dept:'Water필터개발팀', status:'done'}] },
+      { id:15, cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'7월 open', attendees:[], preAttendees:[] },
+      { id:16, cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', pre:0, done:0, date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이인탁 님', target:'전체', status:'progress', budget:'미집행', applyUrl:'7월 open', attendees:[], preAttendees:[] },
       { id:17, cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 1차 귀임자 과정', pre:0, done:1, date:'2026.02.23(월) 10:00~11:30', location:'연구소 6층 대회의실', instructor:'사내강사', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'김철호', dept:'', status:'done'}], preAttendees:[] },
       { id:18, cat:'온보딩', catClass:'cat-onboarding', name:'커피정수기 이해 및 제품분해 실습', pre:0, done:9, date:'2026.02.23(월) 13:00~15:00', location:'연구소 대강당', instructor:'주우진', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}, {name:'김규준', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'김철호', dept:'Water개발1팀', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'최인두', dept:'1연구소', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}], preAttendees:[] },
       { id:19, cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 2차 과정', pre:0, done:5, date:'2026.03.25~26(수,목) 10:00~11:30', location:'연구소 6층 대회의실', instructor:'사내강사', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'김영민', dept:'RELAX상품기획팀', status:'done'}, {name:'송청호', dept:'AIR개발팀', status:'done'}, {name:'오치관', dept:'RELAX상품기획팀', status:'done'}, {name:'임승희', dept:'연구소운영팀', status:'done'}, {name:'장민경', dept:'RELAX상품기획팀', status:'done'}], preAttendees:[] },
-      { id:20, cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', pre:0, done:24, date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', instructor:'DATF 이인탁 님', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'강세리', dept:'기술전략팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김규태', dept:'신뢰성팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김동규', dept:'AIR시스템개발팀', status:'done'}, {name:'김서영', dept:'기술전략팀', status:'done'}, {name:'김화빈', dept:'환경분석팀', status:'done'}, {name:'문성일', dept:'Air개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'배병규', dept:'Air개발2팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'염승목', dept:'Water인증팀', status:'done'}, {name:'윤채영', dept:'포장개발팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이재호', dept:'Living전장개발팀', status:'done'}, {name:'임인묵', dept:'Air개발2팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조형묵', dept:'Air개발2팀', status:'done'}, {name:'최새나', dept:'환경분석팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}], preAttendees:[] },
+      { id:20, cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', pre:0, done:29, date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', instructor:'DATF 이인탁 님', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'강세리', dept:'기술전략팀', status:'done'}, {name:'공현경', dept:'임베디드시스템개발팀', status:'done'}, {name:'김규태', dept:'신뢰성팀', status:'done'}, {name:'김도한', dept:'Water개발2팀', status:'done'}, {name:'김동규', dept:'AIR시스템개발팀', status:'done'}, {name:'김서영', dept:'기술전략팀', status:'done'}, {name:'김화빈', dept:'환경분석팀', status:'done'}, {name:'문성일', dept:'Air개발2팀', status:'done'}, {name:'박윤영', dept:'Water필터개발팀', status:'done'}, {name:'배병규', dept:'Air개발2팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'염승목', dept:'Water인증팀', status:'done'}, {name:'윤채영', dept:'포장개발팀', status:'done'}, {name:'이경수', dept:'Air전장개발팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이재호', dept:'Living전장개발팀', status:'done'}, {name:'임인묵', dept:'Air개발2팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조형묵', dept:'Air개발2팀', status:'done'}, {name:'최새나', dept:'환경분석팀', status:'done'}, {name:'최유나', dept:'Water인증팀', status:'done'}, {name:'한지원', dept:'포장개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}, {name:'황한임', dept:'Air시스템개발팀', status:'done'}, {name:'김정현', dept:'Air시스템개발팀', status:'extra'}, {name:'이정욱', dept:'Air개발팀', status:'extra'}, {name:'이정환', dept:'DATF', status:'extra'}, {name:'전두열', dept:'DATF', status:'extra'}, {name:'황지현', dept:'Water필터개발팀', status:'extra'}], preAttendees:[] },
       { id:21, cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브의 이해', pre:0, done:16, date:'2026.05.29(금) 09:30~11:30', location:'연구소 6층 대회의실', instructor:'DATF 이인탁 님', target:'전체', status:'complete', budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이정수', dept:'신뢰성팀', status:'done'}, {name:'이진욱', dept:'Sleep개발팀', status:'done'}, {name:'임동욱', dept:'Sleep개발팀', status:'done'}, {name:'임성은', dept:'Living개발1팀', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'임채희', dept:'Water개발2팀', status:'done'}, {name:'정운호', dept:'Water개발3팀', status:'done'}, {name:'정재영', dept:'Living개발1팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'천부관', dept:'Water전장개발팀', status:'done'}, {name:'한경덕', dept:'Air전장개발팀', status:'done'}, {name:'홍성권', dept:'Water개발2팀', status:'done'}], preAttendees:[] }
     ];
     // §COURSES_END§
@@ -2197,7 +2233,7 @@
     let researchers = buildResearchers();
 
     // Monthly edu data
-                                                                                                                                                                    // §MONTHLY_START§
+                                                                                                                                            // §MONTHLY_START§
     const monthlyEdu = {
       1: { title:'1월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'1월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
       2: {
@@ -2233,17 +2269,17 @@
         desc:'6월 교육 계획입니다.',
         courses:[
         { cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', desc:'공채 1기 신입 연구원을 대상으로 정수기 및 비데 제품의 실제 설치 프로세스와 환경을 학습하는 현장 실습 교육입니다.', instructor:'박용걸, 박대희 님', date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', seats:19, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항 등을 다룹니다.', instructor:'DATF 이정환 님', date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:16, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', desc:'구성, 원리, 제조 및 성능, 검증 방법에 대한 교육입니다.', instructor:'DATF 이인탁 님', date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:13, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', desc:'경쟁사 회피 설계 방법론 ( LG 보냉 정수기 개발 사례 포함)', instructor:'IP팀 이준석 님', date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:27, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', desc:'준비물: 개인 노트북 지참 필수', instructor:'IP팀 차용호 님', date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:25, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', desc:'자사 생산 공정상의 검사 기술에 대한 전반적 교육', instructor:'DATF 이인탁 님', date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:15, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', desc:'PM 기본 과정 단독 수강 가능 과정입니다.', instructor:'외부 전문 강사', date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', seats:21, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', desc:'1일차 기본 + 2일차 실무 워크숍 연계 진행 코스입니다.', instructor:'외부 전문 강사', date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항 등을 다룹니다.', instructor:'DATF 이정환 님', date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:16, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209440' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', desc:'구성, 원리, 제조 및 성능, 검증 방법에 대한 교육입니다.', instructor:'DATF 이인탁 님', date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:13, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209444' },
+        { cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', desc:'경쟁사 회피 설계 방법론 ( LG 보냉 정수기 개발 사례 포함)', instructor:'IP팀 이준석 님', date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:27, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209445' },
+        { cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', desc:'준비물: 개인 노트북 지참 필수', instructor:'IP팀 차용호 님', date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:25, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209443' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', desc:'자사 생산 공정상의 검사 기술에 대한 전반적 교육', instructor:'DATF 이인탁 님', date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:15, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209439' },
+        { cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', desc:'PM 기본 과정 단독 수강 가능 과정입니다.', instructor:'외부 전문 강사', date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', seats:21, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209446' },
+        { cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', desc:'1일차 기본 + 2일차 실무 워크숍 연계 진행 코스입니다.', instructor:'외부 전문 강사', date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209447' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       7: {
@@ -2251,14 +2287,14 @@
         period:'신청 기간: 미정',
         desc:'7월 교육 계획입니다.',
         courses:[
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 홍현진 님', date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:10, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', desc:'생산기술 현황, TRM 및 제품 라인업 협업', instructor:'DATF 이인탁 님', date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:14, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', desc:'AI와 구글 앱스크립트를 연동하여 기초적인 업무 자동화를 구현합니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', desc:'안티그래비티 도구를 활용한 심화 바이브 코딩 실습 과정입니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 홍현진 님', date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:10, target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', desc:'생산기술 현황, TRM 및 제품 라인업 협업', instructor:'DATF 이인탁 님', date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:14, target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', desc:'AI와 구글 앱스크립트를 연동하여 기초적인 업무 자동화를 구현합니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', desc:'안티그래비티 도구를 활용한 심화 바이브 코딩 실습 과정입니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       8: {
@@ -2266,10 +2302,10 @@
         period:'신청 기간: 미정',
         desc:'8월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       9: {
@@ -2277,10 +2313,10 @@
         period:'신청 기간: 미정',
         desc:'9월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       10: {
@@ -2288,10 +2324,10 @@
         period:'신청 기간: 미정',
         desc:'10월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       11: {
@@ -2299,10 +2335,10 @@
         period:'신청 기간: 미정',
         desc:'11월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       12: {
@@ -2310,10 +2346,10 @@
         period:'신청 기간: 미정',
         desc:'12월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       }
     };
@@ -2351,25 +2387,52 @@
     function applySheetData(rows) {
       if (!rows || !rows.length) return;
 
+      function parseAttendees(str, statusVal) {
+        if (!str || !str.trim()) return [];
+        return str.split(',').map(function(s) { return s.trim(); }).filter(Boolean).map(function(s) {
+          const m = s.match(/^(.+?)\((.+?)\)$/);
+          if (m) return { name: m[1].trim(), dept: m[2].trim(), status: statusVal };
+          return { name: s, dept: '', status: statusVal };
+        });
+      }
+
       courses.length = 0;
       rows.forEach(function(row, i) {
         const date = row['일시'] || '';
         const time = row['시간'] || '';
         const dateStr = time ? date + ' ' + time : date;
+
+        const attendees1 = parseAttendees(row['이수자(수료자) 명단'] || '', 'done');
+        const attendees2 = parseAttendees(row['현장 추가 이수자(수료자) 명단'] || '', 'extra');
+        const allAttendees = attendees1.concat(attendees2);
+        const preAttendees = parseAttendees(row['사전 신청자 명단'] || '', 'pre');
+        const extraCount = parseInt(row['현장 추가 이수자 (명)']) || attendees2.length;
+        const doneCount = (parseInt(row['이수자 (명)']) || attendees1.length) + extraCount;
+        const preCount = parseInt(row['사전 신청자 (명)']) || preAttendees.length;
+        const budgetRaw = (row['교육비 집행 유무'] || '').trim();
+
+        const sheetComplete = (row['교육 진행 유무'] || '').trim() === '수료 완료';
+        const dm = date.match(/20(\d{2})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
+        const dateIsPast = dm ? (new Date(2000 + +dm[1], +dm[2] - 1, +dm[3]).setHours(23,59,59) < Date.now()) : false;
+        const isComplete = sheetComplete || dateIsPast || doneCount > 0;
+
         courses.push({
           id: i + 1,
           cat: row['구분'] || '',
           catClass: getCatClass(row['구분'] || ''),
           name: row['교육명'] || '',
-          pre: parseInt(row['정원']) || 0,
-          done: 0,
+          pre: preCount,
+          done: doneCount,
           date: dateStr.trim(),
           location: row['장소'] || '',
           instructor: row['강사'] || '',
           target: '전체',
-          status: 'progress',
-          budget: '미집행',
-          attendees: [],
+          status: isComplete ? 'complete' : 'progress',
+          canceled: (row['교육 진행 유무'] || '').includes('폐강'),
+          budget: budgetRaw || '미집행',
+          applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim(),
+          attendees: allAttendees,
+          preAttendees: preAttendees,
         });
       });
 
@@ -2388,9 +2451,10 @@
           instructor: row['강사'] || '',
           date: (time ? date + ' ' + time : date).trim(),
           location: row['장소'] || '',
-          seats: parseInt(row['정원']) || null,
+          seats: parseInt(row['사전 신청자 (명)']) || null,
           target: '전체',
           applyType: 'open',
+          applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim(),
         });
       });
 
@@ -2412,6 +2476,8 @@
 
       renderCourseTable(courses);
       renderMonthContent(currentMonth);
+      renderDashboard();
+
       showToast('✅ 구글 시트에서 최신 교육 정보를 불러왔습니다.');
     }
 
@@ -2565,6 +2631,91 @@
       }
     }
 
+    function renderOpinion() {
+      const el = document.getElementById('opinionList');
+      const dateEl = document.getElementById('opinionDate');
+      if (!el) return;
+
+      const total     = courses.length;
+      const completed = courses.filter(function(c) { return c.status === 'complete'; });
+      const totalDone = completed.reduce(function(s, c) { return s + (c.done || 0); }, 0);
+      const withPre   = completed.filter(function(c) { return c.pre > 0; });
+      const avgRate   = withPre.length
+        ? Math.round(withPre.reduce(function(s, c) { return s + c.done / c.pre * 100; }, 0) / withPre.length)
+        : 0;
+      const budgetDone  = courses.filter(function(c) { return (c.budget || '').replace(/\s/g,'').includes('집행완료'); }).length;
+      const canceled    = courses.filter(function(c) { return c.canceled; });
+      const upcoming    = courses.filter(function(c) { return c.status !== 'complete' && !c.canceled; });
+      const totalPre    = upcoming.reduce(function(s, c) { return s + (c.pre || 0); }, 0);
+
+      const now = new Date();
+      if (dateEl) dateEl.textContent = now.getFullYear() + '년 ' + (now.getMonth()+1) + '월 ' + now.getDate() + '일 기준';
+
+      var items = [];
+
+      // 수료 완료
+      items.push({ icon: completed.length > 0 ? '✅' : '⏳',
+        text: '<strong>수료 완료 과정:</strong> 현재까지 총 <strong>' + completed.length + '개</strong> 과정이 수료 완료되었으며, 누적 이수자 <strong>' + totalDone + '명</strong>이 확정되었습니다.' });
+
+      // 이수율
+      if (withPre.length > 0) {
+        var rateIcon = avgRate >= 100 ? '✅' : avgRate >= 80 ? '📊' : '⚠️';
+        items.push({ icon: rateIcon,
+          text: '<strong>이수율 달성 현황:</strong> 수료 과정의 사전 신청자 대비 평균 이수율이 <strong>' + avgRate + '%</strong>로 집계되었습니다.' });
+      }
+
+      // 예산
+      var budgetGap = completed.length - budgetDone;
+      var budgetMsg = budgetGap <= 0
+        ? '완료 과정의 예산이 모두 집행되었습니다.'
+        : '수료 완료 과정 중 <strong>' + budgetGap + '개</strong> 과정의 예산 집행이 남아 있습니다.';
+      items.push({ icon: budgetGap <= 0 ? '✅' : '⚠️',
+        text: '<strong>예산 집행 현황:</strong> 전체 ' + total + '개 과정 중 집행 완료 <strong>' + budgetDone + '개</strong> — ' + budgetMsg });
+
+      // 폐강
+      if (canceled.length > 0) {
+        var names = canceled.map(function(c) { return '<strong>' + c.name + '</strong>'; }).join(', ');
+        items.push({ icon: '🚫',
+          text: '<strong>폐강 과정 (' + canceled.length + '건):</strong> 최소 신청인원 미달로 ' + names + ' 과정이 폐강 처리되었습니다. 재개설 여부 검토가 필요합니다.' });
+      }
+
+      // 진행 예정
+      if (upcoming.length > 0) {
+        items.push({ icon: '📅',
+          text: '<strong>진행 예정 과정:</strong> <strong>' + upcoming.length + '개</strong> 과정이 예정되어 있으며, 사전 신청자 누계 <strong>' + totalPre + '명</strong>이 집계되었습니다.' });
+      }
+
+      el.innerHTML = items.map(function(it) {
+        return '<div class="opinion-item"><div class="opinion-icon">' + it.icon + '</div><div class="opinion-text">' + it.text + '</div></div>';
+      }).join('');
+    }
+
+    function renderDashboard() {
+      const totalDone = courses.reduce(function(s, c) { return s + (c.done || 0); }, 0);
+      const completedCount = courses.filter(function(c) { return c.status === 'complete'; }).length;
+      const progressCount  = courses.filter(function(c) { return c.status !== 'complete'; }).length;
+      const completedWithPre = courses.filter(function(c) { return c.status === 'complete' && c.pre > 0; });
+      const avgRate = completedWithPre.length
+        ? Math.round(completedWithPre.reduce(function(s, c) { return s + c.done / c.pre * 100; }, 0) / completedWithPre.length)
+        : 0;
+
+      document.querySelectorAll('.stat-card').forEach(function(card) {
+        const label = card.querySelector('.stat-label');
+        const valEl  = card.querySelector('.stat-value');
+        if (!label || !valEl) return;
+        if (label.textContent.includes('진행완료')) {
+          valEl.innerHTML = completedCount + '<span style="font-size:14px;color:var(--text-secondary)">/</span>' + progressCount + '<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span>';
+        } else if (label.textContent.includes('이수 완료 인원')) {
+          valEl.innerHTML = totalDone + '<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">명</span>';
+        } else if (label.textContent.includes('이수율')) {
+          valEl.innerHTML = avgRate + '<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">%</span>';
+        } else if (label.textContent.includes('총 개설 과정')) {
+          valEl.innerHTML = courses.length + '<span style="font-size:14px;font-weight:500;color:var(--text-secondary)">개</span>';
+        }
+      });
+      renderOpinion();
+    }
+
     function activateAdminMode() {
       currentMode = 'admin';
       document.getElementById('modeSelectScreen').style.display = 'none';
@@ -2574,6 +2725,7 @@
       document.getElementById('modeAdminBtn').className = 'mode-btn active-admin';
       document.getElementById('modeResearcherBtn').className = 'mode-btn';
       document.getElementById('adminLockHint').textContent = '🔓';
+      renderDashboard();
     }
 
     function switchMode(mode, btn) {
@@ -2592,6 +2744,7 @@
       btn.classList.add('active');
       document.querySelectorAll('#adminMode .view').forEach(v => v.classList.remove('active'));
       document.getElementById('tab-' + tab).classList.add('active');
+      if (tab === 'dashboard') renderDashboard();
       if (tab === 'matrix') renderCourseTable(courses);
       if (tab === 'researchers') renderResearchers(researchers);
     }
@@ -2723,16 +2876,33 @@
     }
 
     // ── COURSE TABLE ──
+    function courseSortKey(c) {
+      const d = c.date || '';
+      // 정규 날짜: 2026.06.08 형태
+      const full = d.match(/20(\d{2})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
+      if (full) return new Date(2000 + +full[1], +full[2] - 1, +full[3]).getTime();
+      // N월(미정) 형태 → 해당 월 말일
+      const mo = d.match(/^(\d{1,2})월/);
+      if (mo) {
+        const yr = new Date().getFullYear();
+        return new Date(yr, +mo[1], 0).getTime(); // 해당 월 말일
+      }
+      // 상시 → 현재 월 말일 (매달 갱신)
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth() + 1, 0).getTime();
+    }
+
     function renderCourseTable(list) {
       const tbody = document.getElementById('courseTableBody');
-      tbody.innerHTML = list.map(c => `
+      const sorted = list.slice().sort((a, b) => courseSortKey(a) - courseSortKey(b));
+      tbody.innerHTML = sorted.map(c => `
     <tr onclick="selectCourse(${c.id})" id="row-${c.id}" ${selectedCourseId === c.id ? 'class="selected"' : ''}>
       <td><span class="cat-badge ${c.catClass}">${c.cat}</span></td>
       <td>
         <div class="course-name">${c.name}</div>
         <div class="course-status">
-          <span class="status-dot ${c.status === 'complete' ? 'status-complete' : 'status-progress'}"></span>
-          <span style="font-size:11px;color:var(--text-muted)">${c.status === 'complete' ? '수료 완료 · 사전 이수율 100%' : '진행 예정'}</span>
+          <span class="status-dot ${c.status === 'complete' ? 'status-complete' : c.canceled ? 'status-canceled' : 'status-progress'}"></span>
+          <span style="font-size:11px;color:var(--text-muted)">${c.status === 'complete' ? '수료 완료 · 사전 이수율 100%' : c.canceled ? '폐강' : '진행 예정'}</span>
         </div>
       </td>
       <td class="course-nums">${c.pre}명 / ${c.done || '-'}명</td>
@@ -2764,25 +2934,30 @@
       function renderList(list, emptyMsg, badgeLabel, badgeClass) {
         if (!list || list.length === 0)
           return `<div style="color:var(--text-muted);font-size:12px;padding:8px 0">${emptyMsg}</div>`;
-        return list.map(a => `
+        return list.map(a => {
+          const isExtra = a.status === 'extra';
+          const badge = isExtra
+            ? `<span class="check-badge" style="background:#FFF3E0;color:#E65100">📍 현장추가</span>`
+            : `<span class="${badgeClass}">${badgeLabel}</span>`;
+          return `
           <div class="attendee-row">
             <div class="attendee-name">${a.name}</div>
             <div class="attendee-dept">${a.dept || ''}</div>
-            <span class="${badgeClass}">${badgeLabel}</span>
-          </div>`).join('');
+            ${badge}
+          </div>`;
+        }).join('');
       }
 
-      const listTitle = past ? '✅ 이수자 명단' : '👥 사전 신청자 명단';
-      const listData  = past ? c.attendees : (c.preAttendees || []);
-      const emptyMsg  = past ? '이수자 명단 없음' : '사전 신청자 없음';
-      const badgeCls  = past ? 'check-badge' : 'pending-badge';
-      const badgeTxt  = past ? '✓ 이수완료' : '신청완료';
-      const attendeesHTML = renderList(listData, emptyMsg, badgeTxt, badgeCls);
+      const doneCount = (c.attendees || []).length;
+      const preCount  = (c.preAttendees || []).length;
+      const doneHTML  = renderList(c.attendees,    '이수자 명단 없음',    '✓ 이수완료', 'check-badge');
+      const preHTML   = renderList(c.preAttendees, '사전 신청자 없음', '신청완료',   'pending-badge');
+      const initTab   = past ? 'done' : 'pre';
 
       document.getElementById('detailPanel').innerHTML = `
     <div class="detail-header">
       <span class="cat-badge ${c.catClass}">${c.cat}</span>
-      <span class="cat-badge ${c.status === 'complete' ? 'cat-knowledge' : 'cat-onboarding'}">${c.status === 'complete' ? '수료 완료' : '진행 예정'}</span>
+      <span class="cat-badge ${c.status === 'complete' ? 'cat-knowledge' : c.canceled ? 'cat-failure' : 'cat-onboarding'}">${c.status === 'complete' ? '수료 완료' : c.canceled ? '폐강' : '진행 예정'}</span>
     </div>
     <div class="detail-title">${c.name}</div>
     <div class="detail-grid">
@@ -2818,7 +2993,7 @@
         <div class="metric-lbl">사전 이수율<br>${c.done}/${c.pre}명</div>
       </div>
       <div class="metric-box">
-        <div class="metric-val">+0명</div>
+        <div class="metric-val">+${(c.attendees||[]).filter(a=>a.status==='extra').length}명</div>
         <div class="metric-lbl">현장 추가 수료<br>자발적 참여자</div>
       </div>
       <div class="metric-box">
@@ -2826,10 +3001,29 @@
         <div class="metric-lbl">총 수료 인원<br>시스템 연동 기준</div>
       </div>
     </div>
-    <div class="detail-section-title">${listTitle}</div>
-    <div class="attendee-list">${attendeesHTML}</div>
+    <div class="detail-section-title">📋 명단 조회</div>
+    <div class="list-tab-bar">
+      <button id="tab-done-${c.id}" class="list-tab-btn ${initTab === 'done' ? 'active-done' : ''}"
+        onclick="switchAttendeeTab('done',${c.id})">✅ 이수자 명단 (${doneCount}명)</button>
+      <button id="tab-pre-${c.id}"  class="list-tab-btn ${initTab === 'pre'  ? 'active-pre'  : ''}"
+        onclick="switchAttendeeTab('pre',${c.id})">👥 사전 신청자 명단 (${preCount}명)</button>
+    </div>
+    <div id="list-done-${c.id}" class="attendee-list" style="display:${initTab === 'done' ? '' : 'none'}">${doneHTML}</div>
+    <div id="list-pre-${c.id}"  class="attendee-list" style="display:${initTab === 'pre'  ? '' : 'none'}">${preHTML}</div>
     <div style="margin-top:8px;font-size:11px;color:var(--text-muted)">COWAY R&D 1:1 수강 대장 매칭 · ✅ 검증완료</div>
   `;
+    }
+
+    function switchAttendeeTab(type, id) {
+      const donBtn = document.getElementById('tab-done-' + id);
+      const preBtn = document.getElementById('tab-pre-'  + id);
+      const donList = document.getElementById('list-done-' + id);
+      const preList = document.getElementById('list-pre-'  + id);
+      if (!donBtn || !preBtn) return;
+      donBtn.className = 'list-tab-btn' + (type === 'done' ? ' active-done' : '');
+      preBtn.className = 'list-tab-btn' + (type === 'pre'  ? ' active-pre'  : '');
+      donList.style.display = type === 'done' ? '' : 'none';
+      preList.style.display = type === 'pre'  ? '' : 'none';
     }
 
     function filterCourses(query) {
