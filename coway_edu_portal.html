@@ -815,6 +815,41 @@
       background: var(--text-muted);
     }
 
+    /* ─── STATUS BADGE (table column) ─── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-badge::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-badge.badge-complete {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+    .status-badge.badge-complete::before { background: #43A047; }
+    .status-badge.badge-progress {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+    .status-badge.badge-progress::before { background: #F57C00; }
+    .status-badge.badge-canceled {
+      background: #ECEFF1;
+      color: #546E7A;
+    }
+    .status-badge.badge-canceled::before { background: #90A4AE; }
+
     .course-nums {
       font-size: 13px;
       font-weight: 700;
@@ -2108,6 +2143,7 @@
               <thead>
                 <tr>
                   <th>분류</th>
+                  <th>상태</th>
                   <th>과정명</th>
                   <th>사전/수료</th>
                   <th>개설 일정</th>
@@ -2945,12 +2981,9 @@
       tbody.innerHTML = sorted.map(c => `
     <tr onclick="selectCourse(${c.id})" id="row-${c.id}" ${selectedCourseId === c.id ? 'class="selected"' : ''}>
       <td><span class="cat-badge ${c.catClass}">${c.cat}</span></td>
+      <td><span class="status-badge ${c.status === 'complete' ? 'badge-complete' : c.canceled ? 'badge-canceled' : 'badge-progress'}">${c.status === 'complete' ? '수료 완료' : c.canceled ? '폐강' : '진행 예정'}</span></td>
       <td>
         <div class="course-name">${c.name}</div>
-        <div class="course-status">
-          <span class="status-dot ${c.status === 'complete' ? 'status-complete' : c.canceled ? 'status-canceled' : 'status-progress'}"></span>
-          <span style="font-size:11px;color:var(--text-muted)">${c.status === 'complete' ? '수료 완료 · 사전 이수율 100%' : c.canceled ? '폐강' : '진행 예정'}</span>
-        </div>
       </td>
       <td class="course-nums">${c.pre}명 / ${c.done || '-'}명</td>
       <td class="course-date">${c.date.split(' ')[0]}<br><span style="color:var(--text-muted)">${c.date.split(' ')[1] || ''}</span></td>
