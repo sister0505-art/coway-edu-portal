@@ -162,6 +162,10 @@ function generateCoursesBlock(rows) {
       const budgetRaw = row['교육비 집행 유무'] || '';
       const budget = budgetRaw.includes('완료') ? '집행완료' : '미집행';
 
+      // 폐강/취소 여부
+      const progRaw = row['교육 진행 유무'] || '';
+      const canceled = progRaw.includes('폐강') || progRaw.includes('취소');
+
       // 교육 진행 상태
       const status = (past || budgetRaw.includes('완료')) ? 'complete' : 'progress';
 
@@ -171,7 +175,7 @@ function generateCoursesBlock(rows) {
       return `      { id:${id++}, cat:'${esc(cat)}', catClass:'${getCatClass(cat)}', ` +
         `name:'${esc(row['교육명'])}', pre:${preCount}, done:${doneCount}, ` +
         `date:'${esc(dateStr.trim())}', location:'${esc(row['장소'])}', ` +
-        `instructor:'${esc(row['강사'])}', target:'전체', status:'${status}', budget:'${budget}', ` +
+        `instructor:'${esc(row['강사'])}', target:'전체', status:'${status}', canceled:${canceled}, budget:'${budget}', ` +
         `applyUrl:'${esc(applyUrl)}', attendees:${attendeesArr}, preAttendees:${preArr} }`;
     });
 
