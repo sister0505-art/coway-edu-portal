@@ -533,6 +533,7 @@ function generateMonthlyBlock(rows) {
       date: (time ? `${dateStr} ${time}` : dateStr).trim(),
       location: row['장소'] || '',
       seats: parseInt(row['사전 신청자 (명)'] || row['정원']) || null,
+      eduHours: row['교육 시간(H)'] || '',
       applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim() || 'https://edu.coway.com/emp',
     };
 
@@ -568,7 +569,7 @@ function generateMonthlyBlock(rows) {
     const courseItems = list.map(c =>
       `        { cat:'${esc(c.cat)}', catClass:'${getCatClass(c.cat)}', name:'${esc(c.name)}', ` +
       `desc:'${esc(c.desc)}', instructor:'${esc(c.instructor)}', date:'${esc(c.date)}', ` +
-      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, target:'전체', applyType:'open', applyUrl:'${esc(c.applyUrl)}' }`
+      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, eduHours:'${esc(c.eduHours || '')}', target:'전체', applyType:'open', applyUrl:'${esc(c.applyUrl)}' }`
     ).join(',\n');
     monthEntries.push(
       `      ${m}: {\n        title:'${m}월 수강 신청 과정', total:${list.length},\n` +
