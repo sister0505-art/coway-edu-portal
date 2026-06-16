@@ -539,6 +539,8 @@ function generateMonthlyBlock(rows) {
       seats: parseInt(row['사전 신청자 (명)'] || row['정원']) || null,
       eduHours: row['교육 시간(H)'] || '',
       applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim() || 'https://edu.coway.com/emp',
+      canceled: (row['교육 진행 유무'] || '').includes('폐강') || (row['교육 진행 유무'] || '').includes('취소'),
+      cancelReason: ((row['교육 진행 유무'] || '').match(/\(([^)]+)\)/) || [])[1] || '',
     };
 
     // '상시' 포함 일시 → 12월까지 매월 반복
@@ -573,7 +575,8 @@ function generateMonthlyBlock(rows) {
     const courseItems = list.map(c =>
       `        { cat:'${esc(c.cat)}', catClass:'${getCatClass(c.cat)}', name:'${esc(c.name)}', ` +
       `desc:'${esc(c.desc)}', instructor:'${esc(c.instructor)}', date:'${esc(c.date)}', ` +
-      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, eduHours:'${esc(c.eduHours || '')}', target:'전체', applyType:'open', applyUrl:'${esc(c.applyUrl)}' }`
+      `location:'${esc(c.location)}', seats:${c.seats || 'null'}, eduHours:'${esc(c.eduHours || '')}', ` +
+      `canceled:${c.canceled || false}, cancelReason:'${esc(c.cancelReason || '')}', target:'전체', applyType:'open', applyUrl:'${esc(c.applyUrl)}' }`
     ).join(',\n');
     monthEntries.push(
       `      ${m}: {\n        title:'${m}월 수강 신청 과정', total:${list.length},\n` +

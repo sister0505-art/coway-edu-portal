@@ -1282,6 +1282,25 @@
       pointer-events: none;
     }
 
+    .apply-btn.canceled-btn {
+      background: #FFEBEE;
+      color: #B71C1C;
+      cursor: default;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      line-height: 1.3;
+      padding: 6px 14px;
+    }
+
+    .cancel-reason-txt {
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
     .seat-info {
       font-size: 12px;
       color: var(--text-secondary);
@@ -1871,7 +1890,7 @@
     <!-- ── DASHBOARD ── -->
     <div id="tab-dashboard" class="view active">
       <div class="content">
-                                                                                                                                                                                <!-- §DASHBOARD_START§ -->
+                                                                                                                                                                                        <!-- §DASHBOARD_START§ -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon blue">📚</div>
@@ -2180,7 +2199,7 @@
 ═══════════════════════════════════════════ -->
   <div id="researcherMode" style="display:none">
     <div class="month-tabs" id="monthTabBar">
-                                                                                                                                          <!-- §TABS_START§ -->
+                                                                                                                                                <!-- §TABS_START§ -->
       <button class="month-tab-btn" onclick="switchMonth(2, this)">2월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(3, this)">3월 <span class="month-tag past-tag">완료</span></button>
       <button class="month-tab-btn" onclick="switchMonth(5, this)">5월 <span class="month-tag past-tag">완료</span></button>
@@ -2247,7 +2266,7 @@
 
   <script>
     // ── DATA ──
-                                                                                                                                                    // §COURSES_START§
+                                                                                                                                                        // §COURSES_START§
     const courses = [
       { id:1, cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', pre:19, done:19, date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', instructor:'박용걸, 박대희 님', target:'전체', status:'complete', canceled:false, budget:'집행완료', applyUrl:'https://edu.coway.com/emp', attendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}], preAttendees:[{name:'윤희철', dept:'TechTalentTF', status:'done'}, {name:'소연', dept:'TechTalentTF', status:'done'}, {name:'임효승', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'최우원', dept:'TechTalentTF', status:'done'}, {name:'김지호', dept:'TechTalentTF', status:'done'}, {name:'정우진', dept:'TechTalentTF', status:'done'}, {name:'박상우', dept:'TechTalentTF', status:'done'}, {name:'유재용', dept:'TechTalentTF', status:'done'}, {name:'박진희', dept:'TechTalentTF', status:'done'}, {name:'정우서', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'김기중', dept:'TechTalentTF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}] },
       { id:2, cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', pre:16, done:23, date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', instructor:'DATF 이정환 님', target:'전체', status:'complete', canceled:false, budget:'미집행', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209440', attendees:[{name:'신종민', dept:'Air전장개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'홍현진', dept:'DATF', status:'done'}, {name:'강동윤', dept:'TechTalentTF', status:'done'}, {name:'강태호', dept:'TechTalentTF', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김찬수', dept:'TechTalentTF', status:'done'}, {name:'서혁진', dept:'TechTalentTF', status:'done'}, {name:'이석진', dept:'TechTalentTF', status:'done'}, {name:'임세빈', dept:'TechTalentTF', status:'done'}, {name:'황병찬', dept:'TechTalentTF', status:'done'}, {name:'최광재', dept:'Water개발1팀', status:'done'}, {name:'김형진', dept:'Water개발2팀', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'김성민', dept:'Water전장개발팀', status:'done'}, {name:'천부관', dept:'Water전장개발팀', status:'done'}, {name:'이시온', dept:'Water전장개발팀', status:'done'}, {name:'박성수', dept:'Water전장개발팀', status:'done'}, {name:'김서영', dept:'기술전략팀', status:'done'}, {name:'김건영', dept:'신뢰성팀', status:'done'}, {name:'이정수', dept:'신뢰성팀', status:'done'}, {name:'김민경', dept:'환경분석팀', status:'done'}, {name:'김혜영', dept:'환경분석팀', status:'done'}], preAttendees:[{name:'김민환', dept:'Living전장개발팀', status:'done'}, {name:'김성윤', dept:'TechTalentTF', status:'done'}, {name:'김성현', dept:'환경분석팀', status:'done'}, {name:'김시현', dept:'Water필터개발팀', status:'done'}, {name:'안민균', dept:'Water필터개발팀', status:'done'}, {name:'모병선', dept:'Water전장개발팀', status:'done'}, {name:'이도희', dept:'환경분석팀', status:'done'}, {name:'안정은', dept:'Water인증팀', status:'done'}, {name:'이성재', dept:'Water개발2팀', status:'done'}, {name:'이영화', dept:'Water인증팀', status:'done'}, {name:'이인탁', dept:'DATF', status:'done'}, {name:'이현우', dept:'Water시스템개발팀', status:'done'}, {name:'장재석', dept:'Air전장개발팀', status:'done'}, {name:'정동원', dept:'Water필터개발팀', status:'done'}, {name:'조재욱', dept:'Water시스템개발팀', status:'done'}, {name:'지영두', dept:'BEREX전장개발팀', status:'done'}] },
@@ -2298,7 +2317,7 @@
     let researchers = buildResearchers();
 
     // Monthly edu data
-                                                                                                                                                        // §MONTHLY_START§
+                                                                                                                                                            // §MONTHLY_START§
     const monthlyEdu = {
       1: { title:'1월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'1월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
       2: {
@@ -2306,8 +2325,8 @@
         period:'신청 기간: 미정',
         desc:'2월 교육 계획입니다.',
         courses:[
-        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 1차 귀임자 과정', desc:'', instructor:'사내강사', date:'2026.02.23(월) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'1.5', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'온보딩', catClass:'cat-onboarding', name:'커피정수기 이해 및 제품분해 실습', desc:'캠슐 커피 정수기의 내부 설계 구조 및 시스템에 대한 이해.', instructor:'주우진', date:'2026.02.23(월) 13:00~15:00', location:'연구소 대강당', seats:null, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 1차 귀임자 과정', desc:'', instructor:'사내강사', date:'2026.02.23(월) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'1.5', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'온보딩', catClass:'cat-onboarding', name:'커피정수기 이해 및 제품분해 실습', desc:'캠슐 커피 정수기의 내부 설계 구조 및 시스템에 대한 이해.', instructor:'주우진', date:'2026.02.23(월) 13:00~15:00', location:'연구소 대강당', seats:null, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
         ]
       },
       3: {
@@ -2315,7 +2334,7 @@
         period:'신청 기간: 미정',
         desc:'3월 교육 계획입니다.',
         courses:[
-        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 2차 과정', desc:'신규 전입 입사자 온보딩 교육', instructor:'사내강사', date:'2026.03.25~26(수,목) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'11.5', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'온보딩', catClass:'cat-onboarding', name:'온보딩 2차 과정', desc:'신규 전입 입사자 온보딩 교육', instructor:'사내강사', date:'2026.03.25~26(수,목) 10:00~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'11.5', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
         ]
       },
       4: { title:'4월 수강 신청 과정', total:0, period:'신청 기간: 미정', desc:'4월 교육 계획을 수립 중입니다. 추후 공지 예정입니다.', courses:[] },
@@ -2324,8 +2343,8 @@
         period:'신청 기간: 미정',
         desc:'5월 교육 계획입니다.',
         courses:[
-        { cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', desc:'노트북LM을 활용한 설계 품질 지식 관리 및 리뷰', instructor:'DATF 이인탁 님', date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브의 이해', desc:'정수기 주요 기능성 밸브의 배경이론, 기능, 원리, 설계, 평가 방법', instructor:'DATF 이인탁 님', date:'2026.05.29(금) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'지식공유', catClass:'cat-knowledge', name:'설계품질 전문가 DA NotebookLM', desc:'노트북LM을 활용한 설계 품질 지식 관리 및 리뷰', instructor:'DATF 이인탁 님', date:'2026.05.07(목) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브의 이해', desc:'정수기 주요 기능성 밸브의 배경이론, 기능, 원리, 설계, 평가 방법', instructor:'DATF 이인탁 님', date:'2026.05.29(금) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
         ]
       },
       6: {
@@ -2333,18 +2352,18 @@
         period:'신청 기간: 미정',
         desc:'6월 교육 계획입니다.',
         courses:[
-        { cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', desc:'공채 1기 신입 연구원을 대상으로 정수기 및 비데 제품의 실제 설치 프로세스와 환경을 학습하는 현장 실습 교육입니다.', instructor:'박용걸, 박대희 님', date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', seats:19, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항 등을 다룹니다.', instructor:'DATF 이정환 님', date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:16, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209440' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', desc:'구성, 원리, 제조 및 성능, 검증 방법에 대한 교육입니다.', instructor:'DATF 이인탁 님', date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:13, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209444' },
-        { cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', desc:'경쟁사 회피 설계 방법론 ( LG 보냉 정수기 개발 사례 포함)', instructor:'IP팀 이준석 님', date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:27, eduHours:'1.5', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209445' },
-        { cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', desc:'준비물: 개인 노트북 지참 필수', instructor:'IP팀 차용호 님', date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:25, eduHours:'1.5', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209443' },
-        { cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', desc:'PM 기본 과정 단독 수강 가능 과정입니다.', instructor:'외부 전문 강사', date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', seats:21, eduHours:'7', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209446' },
-        { cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', desc:'1일차 기본 + 2일차 실무 워크숍 연계 진행 코스입니다.', instructor:'외부 전문 강사', date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', seats:null, eduHours:'7', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209447' },
-        { cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브 이해 (2부 밸브 전반 및 실무 Q&A)', desc:'정수기 주요 기능성 밸브의 배경이론, 기능, 원리, 설계, 평가 방법', instructor:'DATF 이인탁 님', date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'제품 실무', catClass:'cat-failure', name:'R&D Tech 공채 1기 대상 재품군 설치 교육', desc:'공채 1기 신입 연구원을 대상으로 정수기 및 비데 제품의 실제 설치 프로세스와 환경을 학습하는 현장 실습 교육입니다.', instructor:'박용걸, 박대희 님', date:'2026.06.08(월) 13:00~17:00', location:'강서 아카데미', seats:19, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'얼음 정수기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항 등을 다룹니다.', instructor:'DATF 이정환 님', date:'2026.06.12(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:16, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209440' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'정수기 필터의 이해', desc:'구성, 원리, 제조 및 성능, 검증 방법에 대한 교육입니다.', instructor:'DATF 이인탁 님', date:'2026.06.19(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:13, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209444' },
+        { cat:'IP전략', catClass:'cat-ip', name:'권리 범위 해석 및 특허 침해 판단', desc:'경쟁사 회피 설계 방법론 ( LG 보냉 정수기 개발 사례 포함)', instructor:'IP팀 이준석 님', date:'2026.06.24(수) 09:30~11:00', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:27, eduHours:'1.5', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209445' },
+        { cat:'IP전략', catClass:'cat-ip', name:'선행기술 조사 스킬업 코스', desc:'준비물: 개인 노트북 지참 필수', instructor:'IP팀 차용호 님', date:'2026.06.24(수) 13:00~14:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:25, eduHours:'1.5', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209443' },
+        { cat:'PM기본', catClass:'cat-pm', name:'PM 기본(1일차)', desc:'PM 기본 과정 단독 수강 가능 과정입니다.', instructor:'외부 전문 강사', date:'2026.06.29(월) 09:00~17:00', location:'G타워 32층 세미나 C', seats:21, eduHours:'7', canceled:true, cancelReason:'신청자 2명', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209446' },
+        { cat:'PM실무', catClass:'cat-knowledge', name:'PM 기본 + 실무 W/S (2일 과정)', desc:'1일차 기본 + 2일차 실무 워크숍 연계 진행 코스입니다.', instructor:'외부 전문 강사', date:'2026.06.29~30(월,화) 09:00~17:00', location:'G타워 32층 세미나 C', seats:null, eduHours:'7', canceled:true, cancelReason:'신청자 0명', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209447' },
+        { cat:'지식공유', catClass:'cat-knowledge', name:'기능성 밸브 이해 (2부 밸브 전반 및 실무 Q&A)', desc:'정수기 주요 기능성 밸브의 배경이론, 기능, 원리, 설계, 평가 방법', instructor:'DATF 이인탁 님', date:'2026.06.26(금) 09:30~11:30', location:'연구소 6층 대회의실', seats:null, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       7: {
@@ -2352,15 +2371,15 @@
         period:'신청 기간: 미정',
         desc:'7월 교육 계획입니다.',
         courses:[
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', desc:'자사 생산 공정상의 검사 기술에 대한 전반적 교육', instructor:'DATF 이인탁 님', date:'2026.07.16(목) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:15, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209439' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 홍현진 님', date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:10, eduHours:'2', target:'전체', applyType:'open', applyUrl:'7월 open' },
-        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', desc:'생산기술 현황, TRM 및 제품 라인업 협업', instructor:'DATF 이인탁 님', date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:14, eduHours:'2', target:'전체', applyType:'open', applyUrl:'7월 open' },
-        { cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', desc:'AI와 구글 앱스크립트를 연동하여 기초적인 업무 자동화를 구현합니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'4', target:'전체', applyType:'open', applyUrl:'7월 open' },
-        { cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', desc:'안티그래비티 도구를 활용한 심화 바이브 코딩 실습 과정입니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'4', target:'전체', applyType:'open', applyUrl:'7월 open' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 공정 검사 기술', desc:'자사 생산 공정상의 검사 기술에 대한 전반적 교육', instructor:'DATF 이인탁 님', date:'2026.07.16(목) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:15, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp/class/EFACDB0201?gisuCd=10209439' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'청정기의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 홍현진 님', date:'2026.07.10(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:10, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'지식공유회', catClass:'cat-knowledge', name:'코웨이 생산 기술', desc:'생산기술 현황, TRM 및 제품 라인업 협업', instructor:'DATF 이인탁 님', date:'2026.07.24(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:14, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'구글 앱스크립트 활용 바이브 코딩 초급', desc:'AI와 구글 앱스크립트를 연동하여 기초적인 업무 자동화를 구현합니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'4', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'AI교육', catClass:'cat-knowledge', name:'안티그래비티 활용 바이브 코딩 중급', desc:'안티그래비티 도구를 활용한 심화 바이브 코딩 실습 과정입니다.', instructor:'DATF 이인탁 님', date:'7월(미정)', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'4', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'7월 open' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       8: {
@@ -2368,11 +2387,11 @@
         period:'신청 기간: 미정',
         desc:'8월 교육 계획입니다.',
         courses:[
-        { cat:'지식공유', catClass:'cat-knowledge', name:'비데의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 전두열 님', date:'2026.08.07(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'2', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'지식공유', catClass:'cat-knowledge', name:'비데의 이해', desc:'주요 기능, 핵심 부품, 동작원리, 제어 사항, 설계 방법론', instructor:'DATF 전두열 님', date:'2026.08.07(금) 09:30~11:30', location:'연구소 6층 대회의실/대강당(인원수에 따라 조정)', seats:null, eduHours:'2', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       9: {
@@ -2380,11 +2399,11 @@
         period:'신청 기간: 미정',
         desc:'9월 교육 계획입니다.',
         courses:[
-        { cat:'직무역량', catClass:'cat-knowledge', name:'CATIA 초급 (BASIC)', desc:'CATIA 프로그램 기초 이론 및 실습', instructor:'외부강사', date:'2026.09.09~11(수,목,금) 종일', location:'외부교육시설', seats:null, eduHours:'18', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'직무역량', catClass:'cat-knowledge', name:'CATIA 초급 (BASIC)', desc:'CATIA 프로그램 기초 이론 및 실습', instructor:'외부강사', date:'2026.09.09~11(수,목,금) 종일', location:'외부교육시설', seats:null, eduHours:'18', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       10: {
@@ -2392,11 +2411,11 @@
         period:'신청 기간: 미정',
         desc:'10월 교육 계획입니다.',
         courses:[
-        { cat:'직무역량', catClass:'cat-knowledge', name:'CATIA 중급 (SURFACE)', desc:'CATIA 프로그램 중급 이론 및 실습', instructor:'외부강사', date:'2026.10.19~20(월,화) 종일', location:'외부교육시설', seats:null, eduHours:'12', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'직무역량', catClass:'cat-knowledge', name:'CATIA 중급 (SURFACE)', desc:'CATIA 프로그램 중급 이론 및 실습', instructor:'외부강사', date:'2026.10.19~20(월,화) 종일', location:'외부교육시설', seats:null, eduHours:'12', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://edu.coway.com/emp' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       11: {
@@ -2404,10 +2423,10 @@
         period:'신청 기간: 미정',
         desc:'11월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       },
       12: {
@@ -2415,10 +2434,10 @@
         period:'신청 기간: 미정',
         desc:'12월 교육 계획입니다.',
         courses:[
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
-        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'핵심만 딱! 특허침해판단의 모든 것-청구범위 해석 기준', desc:'특허침해판단의 가장 기초이자 핵심이 되는 청구범위 해석 기준을 마스터 하는 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 5차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'연구개발과 지식재산 (발명과 특허제도)', desc:'연구개발(R&D) 성과를 보호하기 위해 연구원이 반드시 알아야 할 발명과 특허제도 안내 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 8차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 제품혁신 방법론', desc:'지식재산(IP) 정보를 활용하여 신제품 아이디어를 도출하고 설계를 혁신하는 방법론을 학습합니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
+        { cat:'특허 온라인 교육', catClass:'cat-ip', name:'IP 활용하여 R&D 잘하기', desc:'특허 장벽을 회피하고 고부가가치 R&D를 기획하기 위한 지식재산 100% 활용 노하우 과정입니다.', instructor:'국가지식재산 교육 포털', date:'상시 학습 총 10차시', location:'온라인 학습 (IP Academy)', seats:null, eduHours:'', canceled:false, cancelReason:'', target:'전체', applyType:'open', applyUrl:'https://b2b.ipacademy.net/coway/login.do' },
         ]
       }
     };
@@ -2522,6 +2541,8 @@
           location: row['장소'] || '',
           seats: parseInt(row['사전 신청자 (명)']) || null,
           eduHours: row['교육 시간(H)'] || '',
+          canceled: (row['교육 진행 유무'] || '').includes('폐강') || (row['교육 진행 유무'] || '').includes('취소'),
+          cancelReason: ((row['교육 진행 유무'] || '').match(/\(([^)]+)\)/) || [])[1] || '',
           target: '전체',
           applyType: 'open',
           applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim(),
@@ -2893,15 +2914,28 @@
 
       const coursesHTML = filteredCourses.map(c => {
         const courseCompleted = isMonthPast || isCourseDatePast(c.date);
-        const applyBtn = courseCompleted
-          ? `<button class="apply-btn completed-btn" disabled>교육 완료</button>`
-          : `<button class="apply-btn ${c.applyType === 'target' ? 'target-only' : ''}" onclick="handleApply('${c.name}','${c.applyType || 'open'}','${c.applyUrl || 'https://edu.coway.com/emp'}')">
+        const isCanceled = c.canceled || (courses.find(x => x.name === c.name) || {}).canceled;
+        let cancelReasonText = '';
+        if (isCanceled) {
+          const raw = c.cancelReason || ((courses.find(x => x.name === c.name) || {}).cancelReason) || '';
+          const num = (raw.match(/(\d+)명/) || [])[1];
+          cancelReasonText = num !== undefined
+            ? (parseInt(num) === 0 ? '수강신청자 없음' : num + '명 수강신청')
+            : raw;
+        }
+        const applyBtn = isCanceled
+          ? `<button class="apply-btn canceled-btn" disabled>🚫 폐강${cancelReasonText ? '<span class="cancel-reason-txt">' + cancelReasonText + '</span>' : ''}</button>`
+          : courseCompleted
+            ? `<button class="apply-btn completed-btn" disabled>교육 완료</button>`
+            : `<button class="apply-btn ${c.applyType === 'target' ? 'target-only' : ''}" onclick="handleApply('${c.name}','${c.applyType || 'open'}','${c.applyUrl || 'https://edu.coway.com/emp'}')">
           ${c.applyType === 'target' ? '지정 임대 교육' : '지금 바로 신청하기'}
         </button>`;
         const mc = courseCompleted ? courses.find(x => x.name === c.name) : null;
-        const seatInfo = courseCompleted
-          ? '이수 완료자: <strong>' + (mc ? mc.done : 0) + '명</strong>'
-          : (c.seats ? '사전 신청자: <strong>' + c.seats + '명</strong>' : '사전 신청 조사 없음');
+        const seatInfo = isCanceled
+          ? '사전 신청 조사 없음'
+          : courseCompleted
+            ? '이수 완료자: <strong>' + (mc ? mc.done : 0) + '명</strong>'
+            : (c.seats ? '사전 신청자: <strong>' + c.seats + '명</strong>' : '사전 신청 조사 없음');
         return `
     <div class="course-card">
       <div class="course-card-top">
