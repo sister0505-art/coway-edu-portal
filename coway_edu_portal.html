@@ -137,6 +137,28 @@
       }
     }
 
+    /* ─── HOME BUTTON ─── */
+    .home-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
+      letter-spacing: -0.2px;
+    }
+    .home-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
     /* ─── MODE SWITCHER ─── */
     /* ── 모드 선택 화면 ── */
     #modeSelectScreen {
@@ -1741,6 +1763,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-left">
+      <button class="home-btn" onclick="goHome()" title="첫 화면으로">🏠 Home</button>
       <div class="header-logo">R&D</div>
       <div class="header-title-group">
         <span class="header-subtitle">COWAY R&D CENTER</span>
@@ -2568,6 +2591,14 @@
     let currentAdminTab = 'dashboard';
     let currentMonth = 6;
     let selectedCourseId = null;
+
+    // ── HOME ──
+    function goHome() {
+      currentMode = null;
+      document.getElementById('modeSelectScreen').style.display = 'flex';
+      document.getElementById('adminMode').style.display = 'none';
+      document.getElementById('researcherMode').style.display = 'none';
+    }
 
     // ── MODE SELECT ──
     function enterAdminMode() {
