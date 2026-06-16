@@ -103,16 +103,15 @@ function escHtml(s) {
 
 // "이름(소속팀), 이름(소속팀)" 형식의 명단 파싱 → JS 객체 리터럴 문자열 반환
 // 괄호 없이 공백이 포함된 항목(설명 텍스트 등)은 이름으로 간주하지 않음
-function parseAttendees(str) {
+function parseAttendees(str, status = 'done') {
   if (!str || !str.trim()) return '';
   const items = str.split(',').map(s => {
     s = s.trim();
     if (!s) return null;
     const m = s.match(/^(.+?)\((.+?)\)\s*$/);
-    if (m) return `{name:'${esc(m[1].trim())}', dept:'${esc(m[2].trim())}', status:'done'}`;
-    // 괄호 없는 항목: 공백 포함 시 설명 텍스트로 보고 스킵
+    if (m) return `{name:'${esc(m[1].trim())}', dept:'${esc(m[2].trim())}', status:'${status}'}`;
     if (s.includes(' ')) return null;
-    return `{name:'${esc(s)}', dept:'', status:'done'}`;
+    return `{name:'${esc(s)}', dept:'', status:'${status}'}`;
   }).filter(Boolean);
   return items.join(', ');
 }
@@ -140,14 +139,20 @@ function generateCoursesBlock(rows) {
 
       const past = isCourseInPast(date);
 
-      // 이수자(수료자) 명단 + 인원수
+      // 이수자(수료자) 명단 + 현장 추가 이수자 명단
       const attendeesStr = parseAttendees(
         row['이수자(수료자) 명단'] || row['이수자(수료자)명단'] || row['이수자 명단'] || row['이수자명단'] || ''
       );
-      const attendeesArr = attendeesStr ? `[${attendeesStr}]` : '[]';
-      // 이수자 수: 명시 컬럼 우선, 없으면 명단에서 카운트
-      const doneCount = parseInt(row['이수자 (명)'] || row['이수자(명)'] || '') ||
-                        (attendeesStr ? attendeesStr.split('status:').length - 1 : 0);
+      const extraStr = parseAttendees(
+        row['현장 추가 이수자(수료자) 명단'] || row['현장추가이수자명단'] || '', 'extra'
+      );
+      const allAttendeeParts = [attendeesStr, extraStr].filter(Boolean);
+      const attendeesArr = allAttendeeParts.length ? `[${allAttendeeParts.join(', ')}]` : '[]';
+      // 이수자 수: 명시 컬럼 우선, 없으면 명단+현장 추가 합산
+      const extraCount = parseInt(row['현장 추가 이수자 (명)'] || row['현장추가이수자(명)'] || '') ||
+                         (extraStr ? extraStr.split('status:').length - 1 : 0);
+      const doneCount = (parseInt(row['이수자 (명)'] || row['이수자(명)'] || '') ||
+                        (attendeesStr ? attendeesStr.split('status:').length - 1 : 0)) + extraCount;
 
       // 사전 신청자 명단 + 인원수
       const preStr = parseAttendees(
