@@ -10,6 +10,8 @@ const path = require('path');
 const HTML_PATH = path.join(__dirname, '..', 'coway_edu_portal.html');
 const CSV_PATH = path.join(__dirname, 'data.csv.csv');
 
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbx6xPSeHA76yQwHEYPH_Yfi5VoZxfN18weHTF9oO5QGPKmTJiDnVgPeGWTf22qiRRqN/exec';
+
 // HTML에서 API 키와 스프레드시트 ID를 읽어옴
 function readApiConfig() {
   const html = fs.readFileSync(HTML_PATH, 'utf8');
@@ -21,6 +23,14 @@ function readApiConfig() {
     spreadsheetId: idMatch ? idMatch[1] : null,
     sheetGid: gidMatch ? parseInt(gidMatch[1]) : null,
   };
+}
+
+// Apps Script 웹앱에서 JSON 데이터 가져오기
+async function fetchFromGAS() {
+  const json = await httpsGet(GAS_URL);
+  const data = JSON.parse(json);
+  if (data.error) throw new Error('GAS error: ' + data.error);
+  return data.data || [];
 }
 
 function httpsGet(url) {
@@ -644,27 +654,33 @@ async function main() {
 
   let rows = [];
 
-  // ① 구글 시트에서 CSV 직접 다운로드 시도 (API 키 불필요, 공개 시트인 경우)
-  console.log('① 구글 시트에서 CSV 다운로드 중...');
+  // ① Apps Script 웹앱에서 JSON 데이터 가져오기
+  console.log('① Apps Script에서 데이터 다운로드 중...');
   try {
-    const config = readApiConfig();
-    if (!config.spreadsheetId) throw new Error('HTML에서 스프레드시트 ID를 찾을 수 없음');
-    const csvText = await fetchCsvFromGoogleSheets(config.spreadsheetId, config.sheetGid);
-    // 다운로드 성공 시 로컬 캐시로 저장
-    fs.writeFileSync(CSV_PATH, csvText, 'utf8');
-    rows = parseCSV(csvText);
-    console.log(`  → 구글 시트에서 ${rows.length}개 행 다운로드 완료`);
-  } catch (e) {
-    console.warn(`  ⚠️  구글 시트 다운로드 실패: ${e.message}`);
-    console.log('  → 로컬 캐시 CSV 파일로 대체 시도...');
-    if (!fs.existsSync(CSV_PATH)) {
-      console.error('\n❌ 로컬 CSV 캐시도 없음:', CSV_PATH);
-      console.error('   → 인터넷 연결 확인 또는 스프레드시트 공유 설정 확인\n');
-      process.exit(1);
+    rows = await fetchFromGAS();
+    console.log(`  → Apps Script에서 ${rows.length}개 행 다운로드 완료`);
+  } catch (e1) {
+    console.warn(`  ⚠️  Apps Script 연결 실패: ${e1.message}`);
+    // ② CSV 직접 다운로드 시도
+    console.log('② 구글 시트에서 CSV 다운로드 시도...');
+    try {
+      const config = readApiConfig();
+      if (!config.spreadsheetId) throw new Error('HTML에서 스프레드시트 ID를 찾을 수 없음');
+      const csvText = await fetchCsvFromGoogleSheets(config.spreadsheetId, config.sheetGid);
+      fs.writeFileSync(CSV_PATH, csvText, 'utf8');
+      rows = parseCSV(csvText);
+      console.log(`  → 구글 시트에서 ${rows.length}개 행 다운로드 완료`);
+    } catch (e2) {
+      console.warn(`  ⚠️  CSV 다운로드도 실패: ${e2.message}`);
+      console.log('  → 로컬 캐시 CSV 파일로 대체 시도...');
+      if (!fs.existsSync(CSV_PATH)) {
+        console.error('\n❌ 로컬 CSV 캐시도 없음:', CSV_PATH);
+        process.exit(1);
+      }
+      const csvText = fs.readFileSync(CSV_PATH, 'utf8');
+      rows = parseCSV(csvText);
+      console.log(`  → 캐시에서 ${rows.length}개 행 확인`);
     }
-    const csvText = fs.readFileSync(CSV_PATH, 'utf8');
-    rows = parseCSV(csvText);
-    console.log(`  → 캐시에서 ${rows.length}개 행 확인`);
   }
 
   if (!rows.length) {
