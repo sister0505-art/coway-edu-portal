@@ -570,9 +570,8 @@ function generateMonthlyBlock(rows) {
     groups[m].push(entry);
   });
 
-  // 상시 학습 과정: 현재 월 ~ 12월까지 모든 월에 추가
-  const startMonth = new Date().getMonth() + 1;
-  for (let m = startMonth; m <= 12; m++) {
+  // 상시 학습 과정: 1월 ~ 12월 모든 월에 추가
+  for (let m = 1; m <= 12; m++) {
     if (!groups[m]) groups[m] = [];
     alwaysCourses.forEach(c => groups[m].push(c));
   }
