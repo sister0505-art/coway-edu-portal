@@ -2559,13 +2559,11 @@
       });
 
       const monthGroups = {};
+      var alwaysCourses = [];
       rows.forEach(function(row) {
-        const m = extractMonth(row['일시'] || '');
-        if (!m) return;
-        if (!monthGroups[m]) monthGroups[m] = [];
-        const date = row['일시'] || '';
-        const time = row['시간'] || '';
-        monthGroups[m].push({
+        var date = row['일시'] || '';
+        var time = row['시간'] || '';
+        var entry = {
           cat: row['구분'] || '',
           catClass: getCatClass(row['구분'] || ''),
           name: row['교육명'] || '',
@@ -2580,11 +2578,24 @@
           target: '전체',
           applyType: 'open',
           applyUrl: (row['지금 바로 신청하기 (사이트 주소)'] || '').trim(),
-        });
+        };
+        if (date.includes('상시')) {
+          alwaysCourses.push(entry);
+          return;
+        }
+        var m = extractMonth(date);
+        if (!m) return;
+        if (!monthGroups[m]) monthGroups[m] = [];
+        monthGroups[m].push(entry);
       });
 
+      for (var m = 1; m <= 12; m++) {
+        if (!monthGroups[m]) monthGroups[m] = [];
+        alwaysCourses.forEach(function(c) { monthGroups[m].push(c); });
+      }
+
       Object.keys(monthGroups).forEach(function(m) {
-        const mi = parseInt(m);
+        var mi = parseInt(m);
         if (monthlyEdu[mi]) {
           monthlyEdu[mi].courses = monthGroups[mi];
           monthlyEdu[mi].total = monthGroups[mi].length;
