@@ -2444,7 +2444,6 @@
     // §MONTHLY_END§
 
     // ── GOOGLE SHEETS 연동 ──
-    const SHEETS_API_KEY = 'AQ.Ab8RN6KNQW1A67AhcgAJBJvUkiJgsgdLbTiGlEJl76BHVOp9eA';
     const SPREADSHEET_ID = '16P43btCx6b4nkna6HmHck1Euz46m5z8V';
     const SHEET_GID = 1997006382;
 
@@ -2581,40 +2580,61 @@
         }
       }, 3000);
 
-      // 1단계: 시트 이름 조회
-      fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SPREADSHEET_ID +
-            '?key=' + SHEETS_API_KEY + '&fields=sheets.properties')
-        .then(function(r) { 
-          if (!r.ok) throw new Error('API Response Not OK (' + r.status + ')');
-          return r.json(); 
+      // CSV 방식으로 구글 시트 데이터 가져오기 (API 키 불필요)
+      var csvUrl = 'https://docs.google.com/spreadsheets/d/' + SPREADSHEET_ID +
+                   '/export?format=csv&gid=' + SHEET_GID;
+      fetch(csvUrl)
+        .then(function(r) {
+          if (!r.ok) throw new Error('CSV Response Not OK (' + r.status + ')');
+          return r.text();
         })
-        .then(function(meta) {
-          var found = (meta.sheets || []).find(function(s) {
-            return s.properties.sheetId === SHEET_GID;
-          });
-          var sheetName = found ? found.properties.title : meta.sheets[0].properties.title;
-          // 2단계: 데이터 조회
-          return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SPREADSHEET_ID +
-                       '/values/' + encodeURIComponent(sheetName) + '?key=' + SHEETS_API_KEY);
-        })
-        .then(function(r) { 
-          if (!r.ok) throw new Error('API Response Not OK (' + r.status + ')');
-          return r.json(); 
-        })
-        .then(function(data) {
+        .then(function(csvText) {
           isLoaded = true;
           clearTimeout(timeoutId);
-          var values = data.values || [];
-          if (values.length < 2) {
+          var lines = csvText.split('\n');
+          if (lines.length < 2) {
             showSyncErrorBanner();
             return;
           }
-          var headers = values[0].map(function(h) { return String(h).trim(); });
-          var rows = values.slice(1).map(function(row) {
-            var obj = {};
-            headers.forEach(function(h, i) { obj[h] = String(row[i] || '').trim(); });
-            return obj;
-          }).filter(function(r) { return Object.values(r).some(function(v) { return v !== ''; }); });
+          function parseCSVLine(line) {
+            var result = [];
+            var current = '';
+            var inQuotes = false;
+            for (var i = 0; i < line.length; i++) {
+              var ch = line[i];
+              if (inQuotes) {
+                if (ch === '"' && i + 1 < line.length && line[i + 1] === '"') {
+                  current += '"';
+                  i++;
+                } else if (ch === '"') {
+                  inQuotes = false;
+                } else {
+                  current += ch;
+                }
+              } else {
+                if (ch === '"') {
+                  inQuotes = true;
+                } else if (ch === ',') {
+                  result.push(current.trim());
+                  current = '';
+                } else {
+                  current += ch;
+                }
+              }
+            }
+            result.push(current.trim());
+            return result;
+          }
+          var headers = parseCSVLine(lines[0]);
+          var rows = lines.slice(1)
+            .filter(function(line) { return line.trim() !== ''; })
+            .map(function(line) {
+              var values = parseCSVLine(line);
+              var obj = {};
+              headers.forEach(function(h, i) { obj[h] = String(values[i] || '').trim(); });
+              return obj;
+            })
+            .filter(function(r) { return Object.values(r).some(function(v) { return v !== ''; }); });
           if (rows.length) {
             applySheetData(rows);
             document.getElementById('syncErrorBanner').style.display = 'none';
@@ -2625,7 +2645,7 @@
         .catch(function(err) {
           isLoaded = true;
           clearTimeout(timeoutId);
-          console.warn('구글 시트 API 연결 실패:', err.message || err);
+          console.warn('구글 시트 CSV 연결 실패:', err.message || err);
           showSyncErrorBanner();
         });
     }
