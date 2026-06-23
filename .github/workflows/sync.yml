@@ -2,7 +2,7 @@ name: 교육포털 데이터 동기화
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 매일 12:00 KST (= UTC 03:00)
+    - cron: '0 23 * * *'   # 매일 08:00 KST (= UTC 23:00 전날)
     - cron: '0 9 * * *'   # 매일 18:00 KST (= UTC 09:00)
   workflow_dispatch:       # GitHub에서 수동 실행 가능
 
