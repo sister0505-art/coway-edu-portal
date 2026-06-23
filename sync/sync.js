@@ -510,14 +510,9 @@ function generateTabsBlock(rows) {
   const today = new Date();
   const currentMonth = today.getMonth() + 1;
 
-  // CSV에서 실제 데이터가 있는 월 수집
+  // 1~12월 전체 탭 생성 (상시 학습 과정이 모든 월에 포함)
   const dataMonths = new Set();
-  rows.forEach(row => {
-    const m = extractMonth(row['일시'] || '');
-    if (m) dataMonths.add(m);
-  });
-  // 현재 월 ~ 12월 항상 포함 (상시 학습 포함)
-  for (let m = currentMonth; m <= 12; m++) dataMonths.add(m);
+  for (let m = 1; m <= 12; m++) dataMonths.add(m);
 
   const sortedMonths = Array.from(dataMonths).sort((a, b) => a - b);
 
